@@ -309,6 +309,20 @@ class SinglyLinkedListTest {
 
     @Test
     void getLast() {
+        //given
+        for (int i = 0; i < 10; i++)
+            linkedList1.append(i);
+
+        //when
+        Integer last = linkedList1.getLast();
+        linkedList1.removeLast();
+        Integer secondToLast = linkedList1.getLast();
+
+        //then
+        assertEquals(9, last, "Wrong last element returned");
+        assertEquals(8, secondToLast, "Wrong last element returned");
+        assertThrows(NoSuchElementException.class, () -> linkedList2.getLast(),
+            "NoSuchElementException not thrown when querying last element of empty list");
     }
 
     @Test
