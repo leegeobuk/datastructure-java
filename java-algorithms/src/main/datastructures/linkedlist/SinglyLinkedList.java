@@ -1,4 +1,4 @@
-package datastructures.linkedlist;
+package main.datastructures.linkedlist;
 
 import java.util.NoSuchElementException;
 import java.util.Objects;
@@ -179,6 +179,7 @@ public class SinglyLinkedList<E> {
             return removed;
         }
         head = head.next;
+        size--;
         return removed;
     }
 
@@ -194,6 +195,7 @@ public class SinglyLinkedList<E> {
         }
         E removed = tail.value;
         tail = cur;
+        size--;
         return removed;
     }
 
