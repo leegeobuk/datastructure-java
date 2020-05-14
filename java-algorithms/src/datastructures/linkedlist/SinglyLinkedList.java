@@ -151,10 +151,23 @@ public class SinglyLinkedList<E> {
         for (Node<E> cur = head; cur.next != null; cur = cur.next) {
             if (cur.next.value.equals(e)) {
                 cur.next = cur.next.next;
+                size--;
                 return true;
             }
         }
         return false;
+    }
+
+    public E removeFirst() {
+        if (isEmpty())
+            throw new NoSuchElementException();
+        E removed = head.value;
+        if (size == 1) {
+            clear();
+            return removed;
+        }
+        head = head.next;
+        return removed;
     }
 
     static class Node<E> {
