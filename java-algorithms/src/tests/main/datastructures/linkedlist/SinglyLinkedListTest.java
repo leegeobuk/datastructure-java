@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.NoSuchElementException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class SinglyLinkedListTest {
@@ -160,6 +162,32 @@ class SinglyLinkedListTest {
 
     @Test
     void set() {
+        //given
+        for (int i = 0; i < 10; i++)
+            linkedList1.append(i);
+
+        //when
+        Integer prevFirst = linkedList1.set(0, -10);
+        Integer first = linkedList1.getFirst();
+        Integer prevLast = linkedList1.set(linkedList1.size() - 1, 100);
+        Integer last = linkedList1.getLast();
+        Integer prevSixth = linkedList1.set(5, 500);
+        Integer sixth = linkedList1.get(5);
+        int size = linkedList1.size();
+
+        //then
+        assertEquals(0, prevFirst, "Wrong previous element when set to new element");
+        assertEquals(9, prevLast, "Wrong previous element when set to new element");
+        assertEquals(5, prevSixth, "Wrong previous element when set to new element");
+        assertEquals(-10, first, "Wrong element when set");
+        assertEquals(100, last, "Wrong element when set");
+        assertEquals(500, sixth, "Wrong element when set");
+        assertThrows(NullPointerException.class, () -> linkedList1.set(0, null),
+            "NullPointerException not thrown when null is given to set");
+        assertThrows(IndexOutOfBoundsException.class, () -> linkedList1.set(-1, 10),
+            "IndexOutOfBoundsException not thrown when index less than 0 is given");
+        assertThrows(IndexOutOfBoundsException.class, () -> linkedList1.set(size, 10),
+            "IndexOutOfBoundsException not thrown when index is greater than last index");
     }
 
     @Test

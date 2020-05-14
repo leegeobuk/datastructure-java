@@ -79,8 +79,6 @@ public class SinglyLinkedList<E> {
             throw new NullPointerException();
         if (isSetIndexOutOfBounds(index))
             throw new IndexOutOfBoundsException();
-        if (isEmpty())
-            throw new NoSuchElementException();
         Node<E> cur = head;
         for (int i = 0; i < index; i++) {
             cur = cur.next;
