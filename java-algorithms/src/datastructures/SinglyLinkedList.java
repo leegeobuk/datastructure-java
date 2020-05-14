@@ -24,7 +24,7 @@ public class SinglyLinkedList<E> {
 
     public boolean append(E e) {
         if (Objects.isNull(e))
-            return false;
+            throw new NullPointerException();
         if (isEmpty()) {
             tail = new Node<>(e, null);
             head = tail;
@@ -38,7 +38,7 @@ public class SinglyLinkedList<E> {
 
     public boolean prepend(E e) {
         if (Objects.isNull(e))
-            return false;
+            throw new NullPointerException();
         if (isEmpty()) {
             head = new Node<>(e, null);
             tail = head;
@@ -49,7 +49,26 @@ public class SinglyLinkedList<E> {
         return true;
     }
 
-    public
+    public void insert(int index, E e) {
+        if (Objects.isNull(e))
+            throw new NullPointerException();
+        if (isInsertOutOfBounds(index))
+            throw new IndexOutOfBoundsException();
+        if (index == 0)
+            prepend(e);
+        else if (index == size)
+            append(e);
+        Node<E> cur = head;
+        for (int i = 0; i < index - 1; i++) {
+            cur = cur.next;
+        }
+        cur.next = new Node<>(e, cur.next);
+        size++;
+    }
+
+    private boolean isInsertOutOfBounds(int index) {
+        return index < 0 || index > size;
+    }
 
     static class Node<E> {
         private E value;
