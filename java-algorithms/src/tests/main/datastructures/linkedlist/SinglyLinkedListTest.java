@@ -290,7 +290,36 @@ class SinglyLinkedListTest {
     }
 
     @Test
+    void getFirst() {
+        //given
+        for (int i = 0; i < 10; i++)
+            linkedList1.append(i);
+
+        //when
+        Integer first = linkedList1.getFirst();
+        linkedList1.removeFirst();
+        Integer second = linkedList1.getFirst();
+
+        //then
+        assertEquals(0, first, "Wrong first element returned");
+        assertEquals(1, second, "Wrong first element returned");
+        assertThrows(NoSuchElementException.class, () -> linkedList2.getFirst(),
+            "NoSuchElementException not thrown when querying first element of empty list");
+    }
+
+    @Test
+    void getLast() {
+    }
+
+    @Test
     void remove() {
+        //given
+
+
+        //when
+
+
+        //then
 
     }
 
