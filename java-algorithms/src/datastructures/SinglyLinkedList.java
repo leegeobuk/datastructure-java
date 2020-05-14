@@ -14,6 +14,12 @@ public class SinglyLinkedList<E> {
         return size;
     }
 
+    public void clear() {
+        head = null;
+        tail = null;
+        size = 0;
+    }
+
     public boolean append(E e) {
         if (isEmpty()) {
             tail = new Node<>(e, null);
@@ -36,6 +42,7 @@ public class SinglyLinkedList<E> {
         size++;
         return true;
     }
+
 
 
     static class Node<E> {
