@@ -192,6 +192,26 @@ class SinglyLinkedListTest {
 
     @Test
     void contains() {
+        //given
+        linkedList1.append(5);
+        linkedList1.append(10);
+        linkedList1.append(20);
+
+        //when
+        boolean contains1 = linkedList1.contains(5);
+        boolean contains2 = linkedList1.contains(10);
+        boolean contains3 = linkedList1.contains(20);
+        boolean contains4 = linkedList1.contains(-1);
+        boolean contains5 = linkedList2.contains(10);
+
+        //then
+        assertTrue(contains1, "False returned when list contains the element");
+        assertTrue(contains2, "False returned when list contains the element");
+        assertTrue(contains3, "False returned when list contains the element");
+        assertFalse(contains4, "True returned when list doesn't contain the element");
+        assertFalse(contains5, "True returned when list doesn't contain the element");
+        assertThrows(NullPointerException.class, () -> linkedList1.contains(null),
+            "NullPointerException not thrown when null is given to check if it exists");
     }
 
     @Test
