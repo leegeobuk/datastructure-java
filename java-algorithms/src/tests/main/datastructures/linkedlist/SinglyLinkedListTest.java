@@ -102,7 +102,7 @@ class SinglyLinkedListTest {
         assertEquals(87, last3, "Last should be 87 but not when appended");
         assertEquals(3, size, "Should be 3 but not when 3 elements are appended");
         assertThrows(NullPointerException.class, () -> linkedList1.append(null),
-            "Should throw NullPointerException but not when null is given");
+            "Should throw NullPointerException but not when null is given to append");
     }
 
     @Test
@@ -110,10 +110,24 @@ class SinglyLinkedListTest {
         //given
 
         //when
-
+        boolean isPrepended1 = linkedList1.prepend(31);
+        Integer first1 = linkedList1.getFirst();
+        boolean isPrepended2 = linkedList1.prepend(50);
+        Integer first2 = linkedList1.getFirst();
+        boolean isPrepended3 = linkedList1.prepend(87);
+        Integer first3 = linkedList1.getFirst();
+        int size = linkedList1.size();
 
         //then
-
+        assertTrue(isPrepended1, "Should be true but not when prepended");
+        assertTrue(isPrepended2, "Should be true but not when prepended");
+        assertTrue(isPrepended3, "Should be true but not when prepended");
+        assertEquals(31, first1, "First should be 31 but not when prepended");
+        assertEquals(50, first2, "First should be 50 but not when prepended");
+        assertEquals(87, first3, "First should be 87 but not when prepended");
+        assertEquals(3, size, "Should be 3 but not when 3 elements are prepended");
+        assertThrows(NullPointerException.class, () -> linkedList1.prepend(null),
+            "Should throw NullPointerException but not when null is given to prepend");
     }
 
     @Test
