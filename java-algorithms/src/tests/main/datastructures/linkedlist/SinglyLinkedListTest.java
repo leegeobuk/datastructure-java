@@ -74,7 +74,6 @@ class SinglyLinkedListTest {
         linkedList2.clear();
         linkedList3.clear();
 
-
         //then
         assertTrue(linkedList1.isEmpty(), "Should be empty but not after cleared");
         assertTrue(linkedList2.isEmpty(), "Should be empty but not after cleared");
@@ -87,7 +86,7 @@ class SinglyLinkedListTest {
 
 
         //when
-
+        
 
         //then
 
