@@ -268,11 +268,30 @@ class SinglyLinkedListTest {
 
     @Test
     void get() {
+        //given
+        for (int i = 0; i < 10; i++)
+            linkedList1.append(i);
 
+        //when
+        Integer first = linkedList1.get(0);
+        Integer last = linkedList1.get(linkedList1.size() - 1);
+        Integer sixth = linkedList1.get(5);
+        Integer seventh = linkedList1.get(6);
+
+        //then
+        assertEquals(0, first, "Wrong element returned when get() called");
+        assertEquals(9, last, "Wrong element returned when get() called");
+        assertEquals(5, sixth, "Wrong element returned when get() called");
+        assertEquals(6, seventh, "Wrong element returned when get() called");
+        assertThrows(IndexOutOfBoundsException.class, () -> linkedList1.get(-1),
+            "IndexOutOfBoundsException not thrown when index is negative");
+        assertThrows(IndexOutOfBoundsException.class, () -> linkedList1.get(10),
+            "IndexOutOfBoundsException not thrown when index is greater than last index");
     }
 
     @Test
     void remove() {
+
     }
 
     @Test
