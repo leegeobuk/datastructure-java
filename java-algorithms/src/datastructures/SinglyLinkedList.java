@@ -1,7 +1,5 @@
 package datastructures;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
@@ -93,20 +91,33 @@ public class SinglyLinkedList<E> {
         return index < 0 || index >= size;
     }
 
-    public boolean contains(Object o) {
-        return indexOf(o) >= 0;
+    public boolean contains(E e) {
+        return indexOf(e) >= 0;
     }
 
-    public int indexOf(Object o) {
-        if (Objects.isNull(o))
+    public int indexOf(E e) {
+        if (Objects.isNull(e))
             throw new NullPointerException();
         int index = 0;
         for (Node<E> cur = head; cur != null; cur = cur.next) {
-            if (cur.value.equals(o))
+            if (cur.value.equals(e))
                 return index;
             index++;
         }
         return -1;
+    }
+
+    public int lastIndexOf(E e) {
+        if (Objects.isNull(e))
+            throw new NullPointerException();
+        int index = -1;
+        int i = 0;
+        for (Node<E> cur = head; cur != null; cur = cur.next) {
+            if (cur.value.equals(e))
+                index = i;
+            i++;
+        }
+        return index;
     }
 
     public E get(int index) {
