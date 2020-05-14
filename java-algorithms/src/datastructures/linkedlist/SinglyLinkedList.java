@@ -133,6 +133,10 @@ public class SinglyLinkedList<E> {
             throw new IndexOutOfBoundsException();
         if (isEmpty())
             throw new NoSuchElementException();
+        if (index == 0)
+            return removeFirst();
+        if (index == size - 1)
+            return removeLast();
         Node<E> cur = head;
         for (int i = 0; i < index - 1; i++) {
             cur = cur.next;
@@ -148,6 +152,14 @@ public class SinglyLinkedList<E> {
             throw new NullPointerException();
         if (isEmpty())
             throw new NoSuchElementException();
+        if (head.value.equals(e)) {
+            removeFirst();
+            return true;
+        }
+        if (tail.value.equals(e)) {
+            removeLast();
+            return true;
+        }
         for (Node<E> cur = head; cur.next != null; cur = cur.next) {
             if (cur.next.value.equals(e)) {
                 cur.next = cur.next.next;
@@ -167,6 +179,21 @@ public class SinglyLinkedList<E> {
             return removed;
         }
         head = head.next;
+        return removed;
+    }
+
+    public E removeLast() {
+        if (isEmpty())
+            throw new NoSuchElementException();
+        if (size == 1) {
+            return removeFirst();
+        }
+        Node<E> cur = head;
+        for (int i = 0; i < size - 1; i++) {
+            cur = cur.next;
+        }
+        E removed = tail.value;
+        tail = cur;
         return removed;
     }
 
