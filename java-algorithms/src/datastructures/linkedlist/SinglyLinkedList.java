@@ -1,4 +1,4 @@
-package datastructures;
+package datastructures.linkedlist;
 
 import java.util.NoSuchElementException;
 import java.util.Objects;
@@ -82,9 +82,9 @@ public class SinglyLinkedList<E> {
         for (int i = 0; i < index; i++) {
             cur = cur.next;
         }
-        E prev = cur.value;
+        E old = cur.value;
         cur.value = e;
-        return prev;
+        return old;
     }
 
     private boolean isSetIndexOutOfBounds(int index) {
@@ -126,6 +126,35 @@ public class SinglyLinkedList<E> {
             cur = cur.next;
         }
         return cur.value;
+    }
+
+    public E remove(int index) {
+        if (isSetIndexOutOfBounds(index))
+            throw new IndexOutOfBoundsException();
+        if (isEmpty())
+            throw new NoSuchElementException();
+        Node<E> cur = head;
+        for (int i = 0; i < index - 1; i++) {
+            cur = cur.next;
+        }
+        E removed = cur.next.value;
+        cur.next = cur.next.next;
+        size--;
+        return removed;
+    }
+
+    public boolean remove(E e) {
+        if (Objects.isNull(e))
+            throw new NullPointerException();
+        if (isEmpty())
+            throw new NoSuchElementException();
+        for (Node<E> cur = head; cur.next != null; cur = cur.next) {
+            if (cur.next.value.equals(e)) {
+                cur.next = cur.next.next;
+                return true;
+            }
+        }
+        return false;
     }
 
     static class Node<E> {
