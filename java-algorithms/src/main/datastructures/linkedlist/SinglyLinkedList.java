@@ -55,10 +55,13 @@ public class SinglyLinkedList<E> {
             throw new NullPointerException();
         if (isInsertOutOfBounds(index))
             throw new IndexOutOfBoundsException();
-        if (index == 0)
+        if (index == 0) {
             prepend(e);
-        else if (index == size)
+            return;
+        } else if (index == size) {
             append(e);
+            return;
+        }
         Node<E> cur = head;
         for (int i = 0; i < index - 1; i++) {
             cur = cur.next;
@@ -220,9 +223,8 @@ public class SinglyLinkedList<E> {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder(head.toString());
-        for (Node<E> cur = head; cur != null; cur = cur.next) {
-            cur = cur.next;
-            sb.append("-->").append(cur.toString());
+        for (Node<E> cur = head.next; cur != null; cur = cur.next) {
+            sb.append(" -> ").append(cur.toString());
         }
         return sb.toString();
     }
