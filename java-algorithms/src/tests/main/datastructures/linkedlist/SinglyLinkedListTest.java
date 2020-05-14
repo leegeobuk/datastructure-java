@@ -224,24 +224,46 @@ class SinglyLinkedListTest {
         linkedList1.append(4);
 
         //when
-        int index1 = linkedList1.indexOf(0);
-        int index2 = linkedList1.indexOf(1);
-        int index3 = linkedList1.indexOf(4);
+        int index1 = linkedList1.indexOf(4);
+        int index2 = linkedList1.indexOf(0);
+        int index3 = linkedList1.indexOf(1);
         int index4 = linkedList1.indexOf(10);
         int index5 = linkedList2.indexOf(10);
 
         //then
-        assertEquals(0, index1, "Wrong index returned when two equal elements exist");
-        assertEquals(1, index2, "Wrong index returned when two equal elements exist");
-        assertEquals(4, index3, "Wrong index returned");
-        assertEquals(-1, index4, "Wrong index returned when no such element exists");
-        assertEquals(-1, index5, "Wrong index returned when no such element exists");
+        assertEquals(4, index1, "Wrong index returned");
+        assertEquals(0, index2, "Wrong first occurrence index returned");
+        assertEquals(1, index3, "Wrong first occurrence index returned");
+        assertEquals(-1, index4, "Positive index returned when element doesn't exist");
+        assertEquals(-1, index5, "Positive index returned when element doesn't exist");
         assertThrows(NullPointerException.class, () -> linkedList1.indexOf(null),
             "NullPointerException not thrown when null is given to find its index");
     }
 
     @Test
     void lastIndexOf() {
+        //given
+        linkedList1.append(0);
+        linkedList1.append(1);
+        linkedList1.append(1);
+        linkedList1.append(0);
+        linkedList1.append(4);
+
+        //when
+        int index1 = linkedList1.indexOf(4);
+        int index2 = linkedList1.indexOf(0);
+        int index3 = linkedList1.indexOf(1);
+        int index4 = linkedList1.indexOf(10);
+        int index5 = linkedList2.indexOf(10);
+
+        //then
+        assertEquals(4, index1, "Wrong index returned");
+        assertEquals(0, index2, "Wrong last occurrence index returned");
+        assertEquals(1, index3, "Wrong last occurrence index returned");
+        assertEquals(-1, index4, "Positive index returned when element doesn't exist");
+        assertEquals(-1, index5, "Positive index returned when element doesn't exist");
+        assertThrows(NullPointerException.class, () -> linkedList1.indexOf(null),
+            "NullPointerException not thrown when null is given to find its last index");
     }
 
     @Test
