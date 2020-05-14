@@ -124,8 +124,6 @@ public class SinglyLinkedList<E> {
     public E get(int index) {
         if (isSetIndexOutOfBounds(index))
             throw new IndexOutOfBoundsException();
-        if (isEmpty())
-            throw new NoSuchElementException();
         if (index == size - 1)
             return getLast();
         Node<E> cur = head;

@@ -250,16 +250,16 @@ class SinglyLinkedListTest {
         linkedList1.append(4);
 
         //when
-        int index1 = linkedList1.indexOf(4);
-        int index2 = linkedList1.indexOf(0);
-        int index3 = linkedList1.indexOf(1);
-        int index4 = linkedList1.indexOf(10);
-        int index5 = linkedList2.indexOf(10);
+        int index1 = linkedList1.lastIndexOf(4);
+        int index2 = linkedList1.lastIndexOf(0);
+        int index3 = linkedList1.lastIndexOf(1);
+        int index4 = linkedList1.lastIndexOf(10);
+        int index5 = linkedList2.lastIndexOf(10);
 
         //then
         assertEquals(4, index1, "Wrong index returned");
-        assertEquals(0, index2, "Wrong last occurrence index returned");
-        assertEquals(1, index3, "Wrong last occurrence index returned");
+        assertEquals(3, index2, "Wrong last occurrence index returned");
+        assertEquals(2, index3, "Wrong last occurrence index returned");
         assertEquals(-1, index4, "Positive index returned when element doesn't exist");
         assertEquals(-1, index5, "Positive index returned when element doesn't exist");
         assertThrows(NullPointerException.class, () -> linkedList1.indexOf(null),
@@ -268,6 +268,7 @@ class SinglyLinkedListTest {
 
     @Test
     void get() {
+
     }
 
     @Test
