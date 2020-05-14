@@ -197,6 +197,16 @@ public class SinglyLinkedList<E> {
         return removed;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder(head.toString());
+        for (Node<E> cur = head; cur != null; cur = cur.next) {
+            cur = cur.next;
+            sb.append("-->").append(cur.toString());
+        }
+        return sb.toString();
+    }
+
     static class Node<E> {
         private E value;
         private Node<E> next;
@@ -204,6 +214,11 @@ public class SinglyLinkedList<E> {
         private Node(E value, Node<E> next) {
             this.value = value;
             this.next = next;
+        }
+
+        @Override
+        public String toString() {
+            return value.toString();
         }
     }
 }
