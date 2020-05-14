@@ -57,7 +57,7 @@ class SinglyLinkedListTest {
         linkedList3.removeFirst();
 
         //then
-        assertEquals(0, linkedList1.size(), "Should be 0 but not when began as empty list");
+        assertEquals(0, linkedList1.size(), "Should be 0 but not when list is empty");
         assertEquals(0, linkedList2.size(), "Should be 0 but not after removeFirst");
         assertEquals(1, linkedList3.size(), "Should be 1 but not after removeFirst");
     }
@@ -84,16 +84,36 @@ class SinglyLinkedListTest {
     void append() {
         //given
 
-
         //when
-        
+        boolean isAppended1 = linkedList1.append(31);
+        Integer last1 = linkedList1.getLast();
+        boolean isAppended2 = linkedList1.append(50);
+        Integer last2 = linkedList1.getLast();
+        boolean isAppended3 = linkedList1.append(87);
+        Integer last3 = linkedList1.getLast();
+        int size = linkedList1.size();
 
         //then
-
+        assertTrue(isAppended1, "Should be true but not when appended");
+        assertTrue(isAppended2, "Should be true but not when appended");
+        assertTrue(isAppended3, "Should be true but not when appended");
+        assertEquals(31, last1, "Last should be 31 but not when appended");
+        assertEquals(50, last2, "Last should be 50 but not when appended");
+        assertEquals(87, last3, "Last should be 87 but not when appended");
+        assertEquals(3, size, "Should be 3 but not when 3 elements are appended");
+        assertThrows(NullPointerException.class, () -> linkedList1.append(null),
+            "Should throw NullPointerException but not when null is given");
     }
 
     @Test
     void prepend() {
+        //given
+
+        //when
+
+
+        //then
+
     }
 
     @Test
