@@ -25,7 +25,7 @@ Faster access, such as random access, is not feasible. Arrays have better cache 
 ## Complexities
 |Search|Prepend/Poll|Append/Pop|Insert/Delete|Space|
 |:----:|:----------:|:---------|:-----------:|:---:|
-|O(n)|O(1)|O(1) with tail<br>O(n) without tail|Search time + o(1)|O(n)|
+|O(n)|O(1)|O(1) with tail<br>O(n) without tail|Search time + O(1)|O(n)|
 
 ## References
 [Wikipedia - Linked List](https://en.wikipedia.org/wiki/Linked_list)
