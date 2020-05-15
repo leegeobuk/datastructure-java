@@ -85,7 +85,9 @@ public class DoublyLinkedList<E> implements CustomLinkedList<E> {
 
     @Override
     public E getLast() {
-        return null;
+        if (isEmpty())
+            throw new NoSuchElementException();
+        return tail.value;
     }
 
     @Override
