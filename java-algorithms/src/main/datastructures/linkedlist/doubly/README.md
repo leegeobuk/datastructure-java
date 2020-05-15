@@ -15,8 +15,8 @@ the previous node during traversal or no need to traverse the list to find the p
 In this example, doubly linked list with both head and tail nodes is implemented.
 
 ## Complexities
-|Search|Prepend/Poll|Append/Pop|Insert/Delete|Traverse|Space|
-|:----:|:----------:|----------|:-----------:|:------:|:---:|
+|Search|Prepend/Offer|Append/Pop|Insert/Delete|Traverse|Space|
+|:----:|:-----------:|----------|:-----------:|:------:|:---:|
 |O(n)|O(1)|O(1) with tail<br>O(n) without tail|Search time + O(1)|O(n)|O(n)|
 
 ## References
