@@ -212,10 +212,11 @@ public class SinglyLinkedList<E> {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder(head.toString());
-        for (Node<E> cur = head.next; cur != null; cur = cur.next) {
-            sb.append(" -> ").append(cur.toString());
+        StringBuilder sb = new StringBuilder("[");
+        for (Node<E> cur = head; cur != null; cur = cur.next) {
+            sb.append(cur.toString()).append(cur.next != null ? " -> " : "");
         }
+        sb.append("]");
         return sb.toString();
     }
 
