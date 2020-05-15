@@ -1,4 +1,6 @@
-package main.datastructures.linkedlist;
+package main.datastructures.linkedlist.singly;
+
+import main.datastructures.linkedlist.CustomLinkedList;
 
 import java.util.NoSuchElementException;
 import java.util.Objects;

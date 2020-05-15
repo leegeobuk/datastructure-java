@@ -1,20 +1,28 @@
-package main.datastructures.linkedlist;
+package main.datastructures.linkedlist.doubly;
+
+import main.datastructures.linkedlist.CustomLinkedList;
 
 public class DoublyLinkedList<E> implements CustomLinkedList<E> {
 
+    private Node<E> head;
+    private Node<E> tail;
+    private int size;
+
     @Override
     public boolean isEmpty() {
-        return false;
+        return size == 0;
     }
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
     public void clear() {
-
+        head = null;
+        tail = null;
+        size = 0;
     }
 
     @Override

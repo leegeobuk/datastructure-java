@@ -1,5 +1,6 @@
-package main.datastructures.linkedlist;
+package main.datastructures.linkedlist.singly;
 
+import main.datastructures.linkedlist.singly.SinglyLinkedList;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
