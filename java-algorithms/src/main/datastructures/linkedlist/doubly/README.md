@@ -12,11 +12,12 @@ The two node links allow traversal of the list in either direction. While adding
 requires changing more links than the same operations on a singly linked list, the operations are simpler
 and potentially more efficient (for nodes other than first nodes) because there is no need to keep track of 
 the previous node during traversal or no need to traverse the list to find the previous node, so that its link can be modified.
+In this example, doubly linked list with both head and tail nodes is implemented.
 
 ## Complexities
-|Search|Prepend/Poll|Append/Pop|Insert/Delete|Space|
-|:----:|:----------:|:---------|:-----------:|:---:|
-|O(n)|O(1)|O(1) with tail<br>O(n) without tail|Search time + O(1)|O(n)|
+|Search|Prepend/Poll|Append/Pop|Insert/Delete|Traverse|Space|
+|:----:|:----------:|----------|:-----------:|:------:|:---:|
+|O(n)|O(1)|O(1) with tail<br>O(n) without tail|Search time + O(1)|O(n)|O(n)|
 
 ## References
 [Wikipedia - Doubly linked list](https://en.wikipedia.org/wiki/Doubly_linked_list)
