@@ -375,9 +375,19 @@ class SinglyLinkedListTest {
         Integer first1 = linkedList2.removeFirst();
         Integer first2 = linkedList2.removeFirst();
         Integer first3 = linkedList2.removeFirst();
+        Integer first4 = linkedList2.removeFirst();
+        Integer first5 = linkedList2.removeFirst();
+        int size = linkedList2.size();
 
         //then
-
+        assertEquals(0, first1, "Wrong element returned after removeFirst");
+        assertEquals(1, first2, "Wrong element returned after removeFirst");
+        assertEquals(2, first3, "Wrong element returned after removeFirst");
+        assertEquals(3, first4, "Wrong element returned after removeFirst");
+        assertEquals(4, first5, "Wrong element returned after removeFirst");
+        assertEquals(25, size, "Wrong size returned after removeFirst");
+        assertThrows(NoSuchElementException.class, () -> emptyList.removeFirst(),
+            "NoSuchElementException not thrown when removeFirst on empty list");
     }
 
     @Test
