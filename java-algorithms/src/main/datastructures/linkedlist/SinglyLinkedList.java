@@ -148,8 +148,6 @@ public class SinglyLinkedList<E> {
     public E remove(int index) {
         if (isSetIndexOutOfBounds(index))
             throw new IndexOutOfBoundsException();
-        if (isEmpty())
-            throw new NoSuchElementException();
         if (index == 0)
             return removeFirst();
         if (index == size - 1)
