@@ -314,17 +314,17 @@ class SinglyLinkedListTest {
     }
 
     @Test
-    void removeAtIndex() {
+    void removeAt() {
         //given
         SinglyLinkedList<String> linkedList = new SinglyLinkedList<>();
         for (int i = 0; i < 30; i++)
             linkedList.append("" + i);
 
         //when
-        String removed1 = linkedList.remove(0);
-        String removed2 = linkedList.remove(linkedList.size() - 1);
-        String removed3 = linkedList.remove(10);
-        String removed4 = linkedList.remove(20);
+        String removed1 = linkedList.removeAt(0);
+        String removed2 = linkedList.removeAt(linkedList.size() - 1);
+        String removed3 = linkedList.removeAt(10);
+        String removed4 = linkedList.removeAt(20);
         int size = linkedList.size();
 
         //then
@@ -333,9 +333,9 @@ class SinglyLinkedListTest {
         assertEquals("11", removed3, "Wrong element removed");
         assertEquals("22", removed4, "Wrong element removed");
         assertEquals(26, size, "Wrong size returned when removed by index");
-        assertThrows(IndexOutOfBoundsException.class, () -> linkedList.remove(-1),
+        assertThrows(IndexOutOfBoundsException.class, () -> linkedList.removeAt(-1),
             "IndexOutOfBoundsException not thrown when negative index given");
-        assertThrows(IndexOutOfBoundsException.class, () -> linkedList.remove(linkedList.size()),
+        assertThrows(IndexOutOfBoundsException.class, () -> linkedList.removeAt(linkedList.size()),
             "IndexOutOfBoundsException not thrown when index is greater than last index");
     }
 

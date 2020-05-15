@@ -3,26 +3,30 @@ package main.datastructures.linkedlist;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
-public class SinglyLinkedList<E> {
+public class SinglyLinkedList<E> implements CustomLinkedList<E> {
 
     private Node<E> head;
     private Node<E> tail;
     private int size;
 
+    @Override
     public boolean isEmpty() {
         return size == 0;
     }
 
+    @Override
     public int size() {
         return size;
     }
 
+    @Override
     public void clear() {
         head = null;
         tail = null;
         size = 0;
     }
 
+    @Override
     public boolean append(E e) {
         if (Objects.isNull(e))
             throw new NullPointerException();
@@ -37,6 +41,7 @@ public class SinglyLinkedList<E> {
         return true;
     }
 
+    @Override
     public boolean prepend(E e) {
         if (Objects.isNull(e))
             throw new NullPointerException();
@@ -50,6 +55,7 @@ public class SinglyLinkedList<E> {
         return true;
     }
 
+    @Override
     public void insert(int index, E e) {
         if (Objects.isNull(e))
             throw new NullPointerException();
@@ -74,6 +80,7 @@ public class SinglyLinkedList<E> {
         return index < 0 || index > size;
     }
 
+    @Override
     public E set(int index, E e) {
         if (Objects.isNull(e))
             throw new NullPointerException();
@@ -92,10 +99,12 @@ public class SinglyLinkedList<E> {
         return index < 0 || index >= size;
     }
 
+    @Override
     public boolean contains(E e) {
         return indexOf(e) >= 0;
     }
 
+    @Override
     public int indexOf(E e) {
         if (Objects.isNull(e))
             throw new NullPointerException();
@@ -108,6 +117,7 @@ public class SinglyLinkedList<E> {
         return -1;
     }
 
+    @Override
     public int lastIndexOf(E e) {
         if (Objects.isNull(e))
             throw new NullPointerException();
@@ -121,6 +131,7 @@ public class SinglyLinkedList<E> {
         return index;
     }
 
+    @Override
     public E get(int index) {
         if (isSetIndexOutOfBounds(index))
             throw new IndexOutOfBoundsException();
@@ -133,19 +144,22 @@ public class SinglyLinkedList<E> {
         return cur.value;
     }
 
+    @Override
     public E getFirst() {
         if (isEmpty())
             throw new NoSuchElementException();
         return head.value;
     }
 
+    @Override
     public E getLast() {
         if (isEmpty())
             throw new NoSuchElementException();
         return tail.value;
     }
 
-    public E remove(int index) {
+    @Override
+    public E removeAt(int index) {
         if (isSetIndexOutOfBounds(index))
             throw new IndexOutOfBoundsException();
         if (index == 0)
@@ -162,6 +176,7 @@ public class SinglyLinkedList<E> {
         return removed;
     }
 
+    @Override
     public boolean remove(E e) {
         if (Objects.isNull(e))
             throw new NullPointerException();
@@ -181,6 +196,7 @@ public class SinglyLinkedList<E> {
         return false;
     }
 
+    @Override
     public E removeFirst() {
         if (isEmpty())
             throw new NoSuchElementException();
@@ -194,6 +210,7 @@ public class SinglyLinkedList<E> {
         return removed;
     }
 
+    @Override
     public E removeLast() {
         if (isEmpty())
             throw new NoSuchElementException();
