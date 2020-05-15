@@ -207,7 +207,7 @@ public class SinglyLinkedList<E> {
             return removeFirst();
         }
         Node<E> cur = head;
-        for (int i = 0; i < size - 1; i++) {
+        for (int i = 0; i < size - 2; i++) {
             cur = cur.next;
         }
         E removed = tail.value;

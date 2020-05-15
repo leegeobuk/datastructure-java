@@ -1,6 +1,6 @@
 package main.datastructures.linkedlist;
 
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,74 +12,62 @@ class SinglyLinkedListTest {
 
     SinglyLinkedList<Integer> linkedList1 = new SinglyLinkedList<>();
     SinglyLinkedList<Integer> linkedList2 = new SinglyLinkedList<>();
-    SinglyLinkedList<Integer> linkedList3 = new SinglyLinkedList<>();
-    static SinglyLinkedList<Integer> bulkList;
-
-    @BeforeAll
-    static void setUp() {
-         bulkList = new SinglyLinkedList<>();
-        for (int i = 0; i < 30; i++) {
-            bulkList.append(i);
-        }
-    }
+    SinglyLinkedList<Integer> emptyList = new SinglyLinkedList<>();
 
     @BeforeEach
     void init() {
+        for (int i = 0; i < 30; i++)
+            linkedList2.append(i);
+    }
+
+    @AfterEach
+    void clearAll() {
         linkedList1.clear();
         linkedList2.clear();
-        linkedList3.clear();
     }
 
     @Test
     void isEmpty() {
         //given
-        linkedList2.append(1);
-        linkedList3.append(1);
-        linkedList3.append(2);
+        linkedList1.append(1);
 
         //when
-        linkedList2.removeFirst();
-        linkedList3.removeFirst();
+        linkedList1.removeFirst();
 
         //then
-        assertTrue(linkedList1.isEmpty(), "Should be empty but not when began from empty list");
-        assertTrue(linkedList2.isEmpty(), "Should be empty but not after removeFirst");
-        assertFalse(linkedList3.isEmpty(), "Should not be empty but empty after removeFirst");
+        assertTrue(linkedList1.isEmpty(), "Should be empty but not when removed");
+        assertFalse(linkedList2.isEmpty(), "Should not be empty but empty");
+        assertTrue(emptyList.isEmpty(), "Should be empty but not when empty list");
     }
 
     @Test
     void size() {
         //given
-        linkedList2.append(1);
-        linkedList3.append(1);
-        linkedList3.append(2);
+        linkedList1.append(1);
 
         //when
-        linkedList2.removeFirst();
-        linkedList3.removeFirst();
+        linkedList1.removeFirst();
 
         //then
-        assertEquals(0, linkedList1.size(), "Should be 0 but not when list is empty");
-        assertEquals(0, linkedList2.size(), "Should be 0 but not after removeFirst");
-        assertEquals(1, linkedList3.size(), "Should be 1 but not after removeFirst");
+        assertEquals(0, linkedList1.size(), "Wrong size returned when removed");
+        assertEquals(30, linkedList2.size(), "Wrong size returned");
+        assertEquals(0, emptyList.size(), "Wrong size returned for empty list");
     }
 
     @Test
     void clear() {
         //given
-        linkedList2.append(1);
-        linkedList3.append(1);
-        linkedList3.append(2);
+        linkedList1.append(1);
 
         //when
         linkedList1.clear();
         linkedList2.clear();
-        linkedList3.clear();
+        emptyList.clear();
 
         //then
         assertTrue(linkedList1.isEmpty(), "Should be empty but not after cleared");
         assertTrue(linkedList2.isEmpty(), "Should be empty but not after cleared");
-        assertTrue(linkedList3.isEmpty(), "Should be empty but not after cleared");
+        assertTrue(emptyList.isEmpty(), "Should be empty but not after cleared");
     }
 
     @Test
@@ -202,7 +190,7 @@ class SinglyLinkedListTest {
         boolean contains2 = linkedList1.contains(10);
         boolean contains3 = linkedList1.contains(20);
         boolean contains4 = linkedList1.contains(-1);
-        boolean contains5 = linkedList2.contains(10);
+        boolean contains5 = emptyList.contains(10);
 
         //then
         assertTrue(contains1, "False returned when list contains the element");
@@ -228,7 +216,7 @@ class SinglyLinkedListTest {
         int index2 = linkedList1.indexOf(0);
         int index3 = linkedList1.indexOf(1);
         int index4 = linkedList1.indexOf(10);
-        int index5 = linkedList2.indexOf(10);
+        int index5 = emptyList.indexOf(10);
 
         //then
         assertEquals(4, index1, "Wrong index returned");
@@ -254,7 +242,7 @@ class SinglyLinkedListTest {
         int index2 = linkedList1.lastIndexOf(0);
         int index3 = linkedList1.lastIndexOf(1);
         int index4 = linkedList1.lastIndexOf(10);
-        int index5 = linkedList2.lastIndexOf(10);
+        int index5 = emptyList.lastIndexOf(10);
 
         //then
         assertEquals(4, index1, "Wrong index returned");
@@ -303,7 +291,7 @@ class SinglyLinkedListTest {
         //then
         assertEquals(0, first, "Wrong first element returned");
         assertEquals(1, second, "Wrong first element returned");
-        assertThrows(NoSuchElementException.class, () -> linkedList2.getFirst(),
+        assertThrows(NoSuchElementException.class, () -> emptyList.getFirst(),
             "NoSuchElementException not thrown when querying first element of empty list");
     }
 
@@ -321,12 +309,12 @@ class SinglyLinkedListTest {
         //then
         assertEquals(9, last, "Wrong last element returned");
         assertEquals(8, secondToLast, "Wrong last element returned");
-        assertThrows(NoSuchElementException.class, () -> linkedList2.getLast(),
+        assertThrows(NoSuchElementException.class, () -> emptyList.getLast(),
             "NoSuchElementException not thrown when querying last element of empty list");
     }
 
     @Test
-    void remove() {
+    void removeAtIndex() {
         //given
 
 
@@ -338,7 +326,7 @@ class SinglyLinkedListTest {
     }
 
     @Test
-    void testRemove() {
+    void remove() {
     }
 
     @Test
