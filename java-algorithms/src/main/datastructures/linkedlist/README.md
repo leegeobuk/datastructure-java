@@ -14,7 +14,7 @@ Faster access, such as random access, is not feasible. Arrays have better cache 
 * Can be easily inserted or removed without reallocation or reorganization of the entire structure.
 * Allow insertion and removal of nodes at any point in the list.
 * Linked list are dynamic, so the length of list can increase or decrease as necessary.
-* Each node does not necessarily follow the previous one physically in the memory.
+* Each node does not necessarily be contiguous physically in the memory.
 
 ## Disadvantages
 * Use more memory than arrays because of the storage used by their pointers.
