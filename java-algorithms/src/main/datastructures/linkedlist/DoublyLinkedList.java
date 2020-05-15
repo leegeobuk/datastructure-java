@@ -1,6 +1,6 @@
 package main.datastructures.linkedlist;
 
-public class DoublyLinkedList implements CustomLinkedList {
+public class DoublyLinkedList<E> implements CustomLinkedList<E> {
 
     @Override
     public boolean isEmpty() {
@@ -18,77 +18,94 @@ public class DoublyLinkedList implements CustomLinkedList {
     }
 
     @Override
-    public boolean append(Object o) {
+    public boolean append(E e) {
         return false;
     }
 
     @Override
-    public boolean prepend(Object o) {
+    public boolean prepend(E e) {
         return false;
     }
 
     @Override
-    public void insert(int index, Object o) {
+    public void insert(int index, E e) {
 
     }
 
     @Override
-    public Object set(int index, Object o) {
+    public E set(int index, E e) {
         return null;
     }
 
     @Override
-    public boolean contains(Object o) {
+    public boolean contains(E e) {
         return false;
     }
 
     @Override
-    public int indexOf(Object o) {
+    public int indexOf(E e) {
         return 0;
     }
 
     @Override
-    public int lastIndexOf(Object o) {
+    public int lastIndexOf(E e) {
         return 0;
     }
 
     @Override
-    public Object get(int index) {
+    public E get(int index) {
         return null;
     }
 
     @Override
-    public Object getFirst() {
+    public E getFirst() {
         return null;
     }
 
     @Override
-    public Object getLast() {
+    public E getLast() {
         return null;
     }
 
     @Override
-    public Object removeAt(int index) {
+    public E removeAt(int index) {
         return null;
     }
 
     @Override
-    public boolean remove(Object o) {
+    public boolean remove(E e) {
         return false;
     }
 
     @Override
-    public Object removeFirst() {
+    public E removeFirst() {
         return null;
     }
 
     @Override
-    public Object removeLast() {
+    public E removeLast() {
         return null;
     }
 
     @Override
     public String toString() {
         return super.toString();
+    }
+
+    static class Node<E> {
+        private E value;
+        private Node<E> prev;
+        private Node<E> next;
+
+        public Node(E value, Node<E> prev, Node<E> next) {
+            this.value = value;
+            this.prev = prev;
+            this.next = next;
+        }
+
+        @Override
+        public String toString() {
+            return value.toString();
+        }
     }
 }
