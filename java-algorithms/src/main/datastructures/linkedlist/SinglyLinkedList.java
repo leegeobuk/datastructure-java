@@ -171,10 +171,6 @@ public class SinglyLinkedList<E> {
             removeFirst();
             return true;
         }
-        if (tail.value.equals(e)) {
-            removeLast();
-            return true;
-        }
         for (Node<E> cur = head; cur.next != null; cur = cur.next) {
             if (cur.next.value.equals(e)) {
                 cur.next = cur.next.next;

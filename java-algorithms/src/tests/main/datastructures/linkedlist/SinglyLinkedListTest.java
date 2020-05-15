@@ -84,15 +84,15 @@ class SinglyLinkedListTest {
         int size = linkedList1.size();
 
         //then
-        assertTrue(isAppended1, "Should be true but not when appended");
-        assertTrue(isAppended2, "Should be true but not when appended");
-        assertTrue(isAppended3, "Should be true but not when appended");
-        assertEquals(31, last1, "Last should be 31 but not when appended");
-        assertEquals(50, last2, "Last should be 50 but not when appended");
-        assertEquals(87, last3, "Last should be 87 but not when appended");
-        assertEquals(3, size, "Should be 3 but not when 3 elements are appended");
+        assertTrue(isAppended1, "False returned for proper append");
+        assertTrue(isAppended2, "False returned for proper append");
+        assertTrue(isAppended3, "False returned for proper append");
+        assertEquals(31, last1, "Wrong last element after append");
+        assertEquals(50, last2, "Wrong last element after append");
+        assertEquals(87, last3, "Wrong last element after append");
+        assertEquals(3, size, "Wrong size after append");
         assertThrows(NullPointerException.class, () -> linkedList1.append(null),
-            "Should throw NullPointerException but not when null is given to append");
+            "NullPointerException not thrown when null is given to append");
     }
 
     @Test
@@ -109,15 +109,15 @@ class SinglyLinkedListTest {
         int size = linkedList1.size();
 
         //then
-        assertTrue(isPrepended1, "Should be true but not when prepended");
-        assertTrue(isPrepended2, "Should be true but not when prepended");
-        assertTrue(isPrepended3, "Should be true but not when prepended");
-        assertEquals(31, first1, "First should be 31 but not when prepended");
-        assertEquals(50, first2, "First should be 50 but not when prepended");
-        assertEquals(87, first3, "First should be 87 but not when prepended");
-        assertEquals(3, size, "Should be 3 but not when 3 elements are prepended");
+        assertTrue(isPrepended1, "False returned for proper prepend");
+        assertTrue(isPrepended2, "False returned for proper prepend");
+        assertTrue(isPrepended3, "False returned for proper prepend");
+        assertEquals(31, first1, "Wrong first element return after prepend");
+        assertEquals(50, first2, "Wrong first element return after prepend");
+        assertEquals(87, first3, "Wrong first element return after prepend");
+        assertEquals(3, size, "Wrong size returned after prepend");
         assertThrows(NullPointerException.class, () -> linkedList1.prepend(null),
-            "Should throw NullPointerException but not when null is given to prepend");
+            "NullPointerException not thrown when null is given to prepend");
     }
 
     @Test
@@ -132,14 +132,14 @@ class SinglyLinkedListTest {
         linkedList1.insert(linkedList1.size(), 10);
         Integer last = linkedList1.getLast();
         linkedList1.insert(6, 100);
-        Integer element = linkedList1.get(6);
+        Integer seventh = linkedList1.get(6);
         int size = linkedList1.size();
 
         //then
         assertEquals(-1, first, "Wrong first element when inserted to first index");
         assertEquals(10, last, "Wrong last element when inserted to last index");
-        assertEquals(100, element, "Element not inserted properly to given index");
-        assertEquals(13, size, "Size not counted properly when inserted");
+        assertEquals(100, seventh, "Element not inserted to given index");
+        assertEquals(13, size, "Wrong size returned after insert");
         assertThrows(NullPointerException.class, () -> linkedList1.insert(0, null),
             "NullPointerException not thrown when null is inserted");
         assertThrows(IndexOutOfBoundsException.class, () -> linkedList1.insert(-1, 10),
@@ -325,12 +325,14 @@ class SinglyLinkedListTest {
         String removed2 = linkedList.remove(linkedList.size() - 1);
         String removed3 = linkedList.remove(10);
         String removed4 = linkedList.remove(20);
+        int size = linkedList.size();
 
         //then
         assertEquals("0", removed1, "Wrong element removed");
         assertEquals("29", removed2, "Wrong element removed");
         assertEquals("11", removed3, "Wrong element removed");
         assertEquals("22", removed4, "Wrong element removed");
+        assertEquals(26, size, "Wrong size returned when removed by index");
         assertThrows(IndexOutOfBoundsException.class, () -> linkedList.remove(-1),
             "IndexOutOfBoundsException not thrown when negative index given");
         assertThrows(IndexOutOfBoundsException.class, () -> linkedList.remove(linkedList.size()),
@@ -341,18 +343,41 @@ class SinglyLinkedListTest {
     void remove() {
         //given
         SinglyLinkedList<String> linkedList = new SinglyLinkedList<>();
-        for (int i = 0; i < 10; i++)
-            linkedList.append("" + i);
+        for (int i = 0; i < 20; i++)
+            linkedList.append("" + (i % 10));
+        linkedList.append("20");
 
         //when
-
+        boolean removed1 = linkedList.remove("1");
+        boolean removed2 = linkedList.remove("0");
+        boolean removed3 = linkedList.remove("20");
+        boolean removed4 = linkedList.remove("0");
+        boolean removed5 = linkedList.remove("10");
+        linkedList.clear();
 
         //then
-
+        assertTrue(removed1, "False returned when 2nd element removed");
+        assertTrue(removed2, "False returned when 1st element removed");
+        assertTrue(removed3, "False returned when last element removed");
+        assertTrue(removed4, "False returned when element removed");
+        assertFalse(removed5, "True returned when removing non-existing element");
+        assertThrows(NullPointerException.class, () -> linkedList.remove(null),
+            "NullPointerException not thrown when null given to remove");
+        assertThrows(NoSuchElementException.class, () -> linkedList.remove("10"),
+            "NoSuchElementException not thrown when removing element of an empty list");
     }
 
     @Test
     void removeFirst() {
+        //given
+
+        //when
+        Integer first1 = linkedList2.removeFirst();
+        Integer first2 = linkedList2.removeFirst();
+        Integer first3 = linkedList2.removeFirst();
+
+        //then
+
     }
 
     @Test
