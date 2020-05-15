@@ -2,6 +2,9 @@ package main.datastructures.linkedlist.doubly;
 
 import main.datastructures.linkedlist.CustomLinkedList;
 
+import java.util.NoSuchElementException;
+import java.util.Objects;
+
 public class DoublyLinkedList<E> implements CustomLinkedList<E> {
 
     private Node<E> head;
@@ -27,12 +30,22 @@ public class DoublyLinkedList<E> implements CustomLinkedList<E> {
 
     @Override
     public boolean append(E e) {
-        return false;
+        if (Objects.isNull(e))
+            throw new NullPointerException();
+        if (isEmpty()) {
+            tail = new Node<>(e, null, null);
+            head = tail;
+        } else {
+            tail.next = new Node<>(e, tail, null);
+            tail = tail.next;
+        }
+        size++;
+        return true;
     }
 
     @Override
     public boolean prepend(E e) {
-        return false;
+        return true;
     }
 
     @Override
@@ -52,12 +65,12 @@ public class DoublyLinkedList<E> implements CustomLinkedList<E> {
 
     @Override
     public int indexOf(E e) {
-        return 0;
+        return -1;
     }
 
     @Override
     public int lastIndexOf(E e) {
-        return 0;
+        return -1;
     }
 
     @Override
@@ -87,7 +100,17 @@ public class DoublyLinkedList<E> implements CustomLinkedList<E> {
 
     @Override
     public E removeFirst() {
-        return null;
+        if (isEmpty())
+            throw new NoSuchElementException();
+        E removed = head.value;
+        if (size == 1) {
+            clear();
+            return removed;
+        }
+        head = head.next;
+        head.prev = null;
+        size--;
+        return removed;
     }
 
     @Override
