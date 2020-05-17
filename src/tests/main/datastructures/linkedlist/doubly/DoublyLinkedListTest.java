@@ -342,6 +342,30 @@ class DoublyLinkedListTest {
 
     @Test
     void remove() {
+        //given
+        SinglyLinkedList<String> linkedList = new SinglyLinkedList<>();
+        for (int i = 0; i < 20; i++)
+            linkedList.append("" + (i % 10));
+        linkedList.append("20");
+
+        //when
+        boolean removed1 = linkedList.remove("1");
+        boolean removed2 = linkedList.remove("0");
+        boolean removed3 = linkedList.remove("20");
+        boolean removed4 = linkedList.remove("0");
+        boolean removed5 = linkedList.remove("10");
+        linkedList.clear();
+
+        //then
+        assertTrue(removed1, "False returned when 2nd element removed");
+        assertTrue(removed2, "False returned when 1st element removed");
+        assertTrue(removed3, "False returned when last element removed");
+        assertTrue(removed4, "False returned when element removed");
+        assertFalse(removed5, "True returned when removing non-existing element");
+        assertThrows(NullPointerException.class, () -> linkedList.remove(null),
+            "NullPointerException not thrown when null given to remove");
+        assertThrows(NoSuchElementException.class, () -> linkedList.remove("10"),
+            "NoSuchElementException not thrown when removing element of an empty list");
     }
 
     @Test
