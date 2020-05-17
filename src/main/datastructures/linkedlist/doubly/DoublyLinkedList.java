@@ -29,8 +29,27 @@ public class DoublyLinkedList<E> implements CustomLinkedList<E> {
     }
 
     @Override
+    public boolean prepend(E e) {
+        return isEmpty() ? append(e) : linkBefore(e, head);
+    }
+
+    private boolean linkBefore(E e, Node<E> succ) {
+        if (e == null)
+            throw new NullPointerException();
+        Node<E> pred = succ.prev;
+        Node<E> node = new Node<>(e, pred, succ);
+        succ.prev = node;
+        if (succ != head)
+            pred.next = node;
+        else
+            head = node;
+        size++;
+        return true;
+    }
+
+    @Override
     public boolean append(E e) {
-        if (Objects.isNull(e))
+        if (e == null)
             throw new NullPointerException();
         if (isEmpty()) {
             tail = new Node<>(e, null, null);
@@ -38,21 +57,6 @@ public class DoublyLinkedList<E> implements CustomLinkedList<E> {
         } else {
             tail.next = new Node<>(e, tail, null);
             tail = tail.next;
-        }
-        size++;
-        return true;
-    }
-
-    @Override
-    public boolean prepend(E e) {
-        if (Objects.isNull(e))
-            throw new NullPointerException();
-        if (isEmpty()) {
-            head = new Node<>(e, null, null);
-            tail = head;
-        } else {
-            head.prev = new Node<>(e, null, head);
-            head = head.prev;
         }
         size++;
         return true;
