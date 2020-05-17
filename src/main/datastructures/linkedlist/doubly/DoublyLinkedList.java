@@ -1,7 +1,6 @@
 package main.datastructures.linkedlist.doubly;
 
 import main.datastructures.linkedlist.CustomLinkedList;
-import main.datastructures.linkedlist.singly.SinglyLinkedList;
 
 import java.util.NoSuchElementException;
 import java.util.Objects;
@@ -97,11 +96,19 @@ public class DoublyLinkedList<E> implements CustomLinkedList<E> {
 
     @Override
     public boolean contains(E e) {
-        return false;
+        return indexOf(e) >= 0;
     }
 
     @Override
     public int indexOf(E e) {
+        if (Objects.isNull(e))
+            throw new NullPointerException();
+        int index = 0;
+        for (Node<E> cur = head; cur != null; cur = cur.next) {
+            if (cur.value.equals(e))
+                return index;
+            index++;
+        }
         return -1;
     }
 
