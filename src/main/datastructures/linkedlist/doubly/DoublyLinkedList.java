@@ -64,8 +64,6 @@ public class DoublyLinkedList<E> implements CustomLinkedList<E> {
 
     @Override
     public void insert(int index, E e) {
-        if (Objects.isNull(e))
-            throw new NullPointerException();
         if (isInsertOutOfBounds(index))
             throw new IndexOutOfBoundsException();
         if (index == 0) {
@@ -75,26 +73,24 @@ public class DoublyLinkedList<E> implements CustomLinkedList<E> {
             append(e);
             return;
         }
-        Node<E> cur;
-        Node<E> node;
-        if (index < size / 2) {
-            cur = head;
-            for (int i = 0; i < index - 1; i++) {
-                cur = cur.next;
-            }
-            node = new Node<>(e, cur, cur.next);
-            cur.next = node;
-            node.next.prev = node;
-        } else {
-            cur = tail;
-            for (int i = 0; i < (size - 1) - index; i++) {
-                cur = cur.prev;
-            }
-            node = new Node<>(e, cur.prev, cur);
-            cur.prev = node;
-            node.prev.next = node;
+        Node<E> cur = index < (size >> 1) ? findNode(index) : findNodeReverse(index);
+        linkBefore(e, cur);
+    }
+
+    private Node<E> findNode(int index) {
+        Node<E> cur = head;
+        for (int i = 0; i < index; i++) {
+            cur = cur.next;
         }
-        size++;
+        return cur;
+    }
+
+    private Node<E> findNodeReverse(int index) {
+        Node<E> cur = tail;
+        for (int i = 0; i < (size - 1) - index; i++) {
+            cur = cur.prev;
+        }
+        return cur;
     }
 
     private boolean isInsertOutOfBounds(int index) {
