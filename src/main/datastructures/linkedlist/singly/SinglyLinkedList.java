@@ -164,17 +164,17 @@ public class SinglyLinkedList<E> implements CustomLinkedList<E> {
         Node<E> pred = findNode(index - 1);
         E removed = pred.next.value;
         remove(pred);
-        size--;
         return removed;
     }
 
     private void remove(Node<E> pred) {
         pred.next = pred.next.next;
+        size--;
     }
 
     @Override
     public boolean remove(E e) {
-        if (Objects.isNull(e))
+        if (e == null)
             throw new NullPointerException();
         if (isEmpty())
             throw new NoSuchElementException();
@@ -182,12 +182,11 @@ public class SinglyLinkedList<E> implements CustomLinkedList<E> {
             removeFirst();
             return true;
         }
-        for (Node<E> cur = head; cur.next != null; cur = cur.next) {
-            if (cur.next.value.equals(e)) {
-                cur.next = cur.next.next;
-                size--;
-                return true;
-            }
+        int index = indexOf(e);
+        if (index != -1) {
+            Node<E> pred = findNode(index - 1);
+            remove(pred);
+            return true;
         }
         return false;
     }
