@@ -184,14 +184,13 @@ public class DoublyLinkedList<E> implements CustomLinkedList<E> {
             removeFirst();
             return;
         }
-        if (node == tail) {
-            removeLast();
-            return;
-        }
         Node<E> pred = node.prev;
         Node<E> succ = node.next;
         pred.next = succ;
-        succ.prev = node;
+        if (node == tail)
+            tail = pred;
+        else
+            succ.prev = pred;
         size--;
     }
 
@@ -230,12 +229,9 @@ public class DoublyLinkedList<E> implements CustomLinkedList<E> {
             throw new NoSuchElementException();
         E removed = tail.value;
         if (size == 1) {
-            clear();
-            return removed;
+            return removeFirst();
         }
-        tail = tail.prev;
-        tail.next = null;
-        size--;
+        unlink(tail);
         return removed;
     }
 
