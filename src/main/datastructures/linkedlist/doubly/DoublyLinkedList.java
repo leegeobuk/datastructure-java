@@ -73,11 +73,15 @@ public class DoublyLinkedList<E> implements CustomLinkedList<E> {
             append(e);
             return;
         }
-        Node<E> cur = index < (size >> 1) ? findNode(index) : findNodeReverse(index);
+        Node<E> cur = findNode(index);
         linkBefore(e, cur);
     }
 
     private Node<E> findNode(int index) {
+        return index < (size >> 1) ? findNodeFromStart(index) : findNodeFromEnd(index);
+    }
+
+    private Node<E> findNodeFromStart(int index) {
         Node<E> cur = head;
         for (int i = 0; i < index; i++) {
             cur = cur.next;
@@ -85,7 +89,7 @@ public class DoublyLinkedList<E> implements CustomLinkedList<E> {
         return cur;
     }
 
-    private Node<E> findNodeReverse(int index) {
+    private Node<E> findNodeFromEnd(int index) {
         Node<E> cur = tail;
         for (int i = 0; i < (size - 1) - index; i++) {
             cur = cur.prev;
@@ -103,20 +107,9 @@ public class DoublyLinkedList<E> implements CustomLinkedList<E> {
             throw new NullPointerException();
         if (isSetIndexOutOfBounds(index))
             throw new IndexOutOfBoundsException();
-        Node<E> cur;
-        if (index < size / 2) {
-            cur = head;
-            for (int i = 0; i < index; i++) {
-                cur = cur.next;
-            }
-        } else {
-            cur = tail;
-            for (int i = 0; i < (size - 1) - index; i++) {
-                cur = cur.prev;
-            }
-        }
-        E old = cur.value;
-        cur.value = e;
+        Node<E> node = findNode(index);
+        E old = node.value;
+        node.value = e;
         return old;
     }
 
