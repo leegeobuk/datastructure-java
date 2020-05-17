@@ -117,7 +117,7 @@ public class SinglyLinkedList<E> implements CustomLinkedList<E> {
 
     @Override
     public int lastIndexOf(E e) {
-        if (Objects.isNull(e))
+        if (e == null)
             throw new NullPointerException();
         int index = -1;
         int i = 0;
