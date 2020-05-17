@@ -215,12 +215,11 @@ public class DoublyLinkedList<E> implements CustomLinkedList<E> {
         if (isEmpty())
             throw new NoSuchElementException();
         E removed = head.value;
-        if (size == 1) {
-            clear();
-            return removed;
-        }
         head = head.next;
-        head.prev = null;
+        if (size == 1)
+            tail = null;
+        else
+            head.prev = null;
         size--;
         return removed;
     }
