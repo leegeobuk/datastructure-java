@@ -1,6 +1,5 @@
 package main.datastructures.linkedlist.singly;
 
-import main.datastructures.linkedlist.singly.SinglyLinkedList;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -72,31 +71,6 @@ class SinglyLinkedListTest {
     }
 
     @Test
-    void append() {
-        //given
-
-        //when
-        boolean isAppended1 = linkedList1.append(31);
-        Integer last1 = linkedList1.getLast();
-        boolean isAppended2 = linkedList1.append(50);
-        Integer last2 = linkedList1.getLast();
-        boolean isAppended3 = linkedList1.append(87);
-        Integer last3 = linkedList1.getLast();
-        int size = linkedList1.size();
-
-        //then
-        assertTrue(isAppended1, "False returned for proper append");
-        assertTrue(isAppended2, "False returned for proper append");
-        assertTrue(isAppended3, "False returned for proper append");
-        assertEquals(31, last1, "Wrong last element after append");
-        assertEquals(50, last2, "Wrong last element after append");
-        assertEquals(87, last3, "Wrong last element after append");
-        assertEquals(3, size, "Wrong size after append");
-        assertThrows(NullPointerException.class, () -> linkedList1.append(null),
-            "NullPointerException not thrown when null is given to append");
-    }
-
-    @Test
     void prepend() {
         //given
 
@@ -119,6 +93,31 @@ class SinglyLinkedListTest {
         assertEquals(3, size, "Wrong size returned after prepend");
         assertThrows(NullPointerException.class, () -> linkedList1.prepend(null),
             "NullPointerException not thrown when null is given to prepend");
+    }
+
+    @Test
+    void append() {
+        //given
+
+        //when
+        boolean isAppended1 = linkedList1.append(31);
+        Integer last1 = linkedList1.getLast();
+        boolean isAppended2 = linkedList1.append(50);
+        Integer last2 = linkedList1.getLast();
+        boolean isAppended3 = linkedList1.append(87);
+        Integer last3 = linkedList1.getLast();
+        int size = linkedList1.size();
+
+        //then
+        assertTrue(isAppended1, "False returned for proper append");
+        assertTrue(isAppended2, "False returned for proper append");
+        assertTrue(isAppended3, "False returned for proper append");
+        assertEquals(31, last1, "Wrong last element after append");
+        assertEquals(50, last2, "Wrong last element after append");
+        assertEquals(87, last3, "Wrong last element after append");
+        assertEquals(3, size, "Wrong size after append");
+        assertThrows(NullPointerException.class, () -> linkedList1.append(null),
+            "NullPointerException not thrown when null is given to append");
     }
 
     @Test

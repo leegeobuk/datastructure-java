@@ -56,7 +56,7 @@ public class SinglyLinkedList<E> implements CustomLinkedList<E> {
 
     @Override
     public void insert(int index, E e) {
-        if (Objects.isNull(e))
+        if (e == null)
             throw new NullPointerException();
         if (isInsertOutOfBounds(index))
             throw new IndexOutOfBoundsException();
@@ -67,12 +67,17 @@ public class SinglyLinkedList<E> implements CustomLinkedList<E> {
             append(e);
             return;
         }
-        Node<E> cur = head;
-        for (int i = 0; i < index - 1; i++) {
-            cur = cur.next;
-        }
+        Node<E> cur = findNode(index - 1);
         cur.next = new Node<>(e, cur.next);
         size++;
+    }
+
+    private Node<E> findNode(int index) {
+        Node<E> cur = head;
+        for (int i = 0; i < index; i++) {
+            cur = cur.next;
+        }
+        return cur;
     }
 
     private boolean isInsertOutOfBounds(int index) {
