@@ -1,6 +1,7 @@
 package main.datastructures.linkedlist.singly;
 
 import main.datastructures.linkedlist.CustomLinkedList;
+import org.junit.platform.engine.support.hierarchical.Node;
 
 import java.util.NoSuchElementException;
 import java.util.Objects;
@@ -56,8 +57,6 @@ public class SinglyLinkedList<E> implements CustomLinkedList<E> {
 
     @Override
     public void insert(int index, E e) {
-        if (e == null)
-            throw new NullPointerException();
         if (isInsertOutOfBounds(index))
             throw new IndexOutOfBoundsException();
         if (index == 0) {
@@ -67,9 +66,8 @@ public class SinglyLinkedList<E> implements CustomLinkedList<E> {
             append(e);
             return;
         }
-        Node<E> cur = findNode(index - 1);
-        cur.next = new Node<>(e, cur.next);
-        size++;
+        Node<E> pred = findNode(index - 1);
+        linkAfter(e, pred);
     }
 
     private Node<E> findNode(int index) {
@@ -86,17 +84,14 @@ public class SinglyLinkedList<E> implements CustomLinkedList<E> {
 
     @Override
     public E set(int index, E e) {
-        if (Objects.isNull(e))
+        if (e == null)
             throw new NullPointerException();
         if (isSetIndexOutOfBounds(index))
             throw new IndexOutOfBoundsException();
-        Node<E> cur = head;
-        for (int i = 0; i < index; i++) {
-            cur = cur.next;
-        }
-        E old = cur.value;
-        cur.value = e;
-        return old;
+        Node<E> node = findNode(index);
+        E oldValue = node.value;
+        node.value = e;
+        return oldValue;
     }
 
     private boolean isSetIndexOutOfBounds(int index) {
