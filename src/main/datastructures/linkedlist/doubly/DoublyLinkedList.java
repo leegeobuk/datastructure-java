@@ -209,7 +209,17 @@ public class DoublyLinkedList<E> implements CustomLinkedList<E> {
 
     @Override
     public E removeLast() {
-        return null;
+        if (isEmpty())
+            throw new NoSuchElementException();
+        E removed = tail.value;
+        if (size == 1) {
+            clear();
+            return removed;
+        }
+        tail = tail.prev;
+        tail.next = null;
+        size--;
+        return removed;
     }
 
     @Override

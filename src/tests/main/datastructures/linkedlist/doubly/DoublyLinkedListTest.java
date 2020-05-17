@@ -4,6 +4,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.NoSuchElementException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class DoublyLinkedListTest {
@@ -277,10 +279,38 @@ class DoublyLinkedListTest {
 
     @Test
     void getFirst() {
+        //given
+        for (int i = 0; i < 10; i++)
+            linkedList1.append(i);
+
+        //when
+        Integer first = linkedList1.getFirst();
+        linkedList1.removeFirst();
+        Integer second = linkedList1.getFirst();
+
+        //then
+        assertEquals(0, first, "Wrong first element returned");
+        assertEquals(1, second, "Wrong first element returned");
+        assertThrows(NoSuchElementException.class, () -> emptyList.getFirst(),
+            "NoSuchElementException not thrown when querying first element of empty list");
     }
 
     @Test
     void getLast() {
+        //given
+        for (int i = 0; i < 10; i++)
+            linkedList1.append(i);
+
+        //when
+        Integer last = linkedList1.getLast();
+        linkedList1.removeLast();
+        Integer secondToLast = linkedList1.getLast();
+
+        //then
+        assertEquals(9, last, "Wrong last element returned");
+        assertEquals(8, secondToLast, "Wrong last element returned");
+        assertThrows(NoSuchElementException.class, () -> emptyList.getLast(),
+            "NoSuchElementException not thrown when querying last element of empty list");
     }
 
     @Test
