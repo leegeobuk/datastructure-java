@@ -393,5 +393,24 @@ class DoublyLinkedListTest {
 
     @Test
     void removeLast() {
+        //given
+
+        //when
+        Integer last1 = linkedList2.removeLast();
+        Integer last2 = linkedList2.removeLast();
+        Integer last3 = linkedList2.removeLast();
+        Integer last4 = linkedList2.removeLast();
+        Integer last5 = linkedList2.removeLast();
+        int size = linkedList2.size();
+
+        //then
+        assertEquals(29, last1, "Wrong element returned after removeLast");
+        assertEquals(28, last2, "Wrong element returned after removeLast");
+        assertEquals(27, last3, "Wrong element returned after removeLast");
+        assertEquals(26, last4, "Wrong element returned after removeLast");
+        assertEquals(25, last5, "Wrong element returned after removeLast");
+        assertEquals(25, size, "Wrong size returned after removeLast");
+        assertThrows(NoSuchElementException.class, () -> emptyList.removeLast(),
+            "NoSuchElementException not thrown when removeLast on empty list");
     }
 }
