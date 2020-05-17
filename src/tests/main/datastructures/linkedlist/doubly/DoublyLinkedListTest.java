@@ -120,6 +120,30 @@ class DoublyLinkedListTest {
 
     @Test
     void insert() {
+        //given
+        for (int i = 0; i < 10; i++)
+            linkedList1.append(i);
+
+        //when
+        linkedList1.insert(0, -1);
+        Integer first = linkedList1.getFirst();
+        linkedList1.insert(linkedList1.size(), 10);
+        Integer last = linkedList1.getLast();
+        linkedList1.insert(6, 100);
+        Integer seventh = linkedList1.get(6);
+        int size = linkedList1.size();
+
+        //then
+        assertEquals(-1, first, "Wrong first element when inserted to first index");
+        assertEquals(10, last, "Wrong last element when inserted to last index");
+        assertEquals(100, seventh, "Element not inserted to given index");
+        assertEquals(13, size, "Wrong size returned after insert");
+        assertThrows(NullPointerException.class, () -> linkedList1.insert(0, null),
+            "NullPointerException not thrown when null is inserted");
+        assertThrows(IndexOutOfBoundsException.class, () -> linkedList1.insert(-1, 10),
+            "IndexOutOfBoundsException not thrown when negative index is given");
+        assertThrows(IndexOutOfBoundsException.class, () -> linkedList1.insert(size + 1, 10),
+            "IndexOutOfBoundsException not thrown when index is greater than size");
     }
 
     @Test

@@ -61,12 +61,38 @@ public class DoublyLinkedList<E> implements CustomLinkedList<E> {
 
     @Override
     public void insert(int index, E e) {
+        if (Objects.isNull(e))
+            throw new NullPointerException();
+        if (isInsertOutOfBounds(index))
+            throw new IndexOutOfBoundsException();
+        if (index == 0) {
+            prepend(e);
+            return;
+        } else if (index == size) {
+            append(e);
+            return;
+        }
+        Node<E> cur = head;
+        for (int i = 0; i < index - 1; i++) {
+            cur = cur.next;
+        }
+        Node<E> node = new Node<>(e, cur, cur.next);
+        cur.next = node;
+        node.next.prev = node;
+        size++;
+    }
 
+    private boolean isInsertOutOfBounds(int index) {
+        return index < 0 || index > size;
     }
 
     @Override
     public E set(int index, E e) {
         return null;
+    }
+
+    private boolean isSetIndexOutOfBounds(int index) {
+        return index < 0 || index >= size;
     }
 
     @Override
@@ -86,7 +112,15 @@ public class DoublyLinkedList<E> implements CustomLinkedList<E> {
 
     @Override
     public E get(int index) {
-        return null;
+        if (isSetIndexOutOfBounds(index))
+            throw new IndexOutOfBoundsException();
+        if (index == size - 1)
+            return getLast();
+        Node<E> cur = head;
+        for (int i = 0; i < index; i++) {
+            cur = cur.next;
+        }
+        return cur.value;
     }
 
     @Override
