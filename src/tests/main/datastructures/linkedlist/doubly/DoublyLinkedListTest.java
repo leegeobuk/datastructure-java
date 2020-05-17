@@ -152,10 +152,52 @@ class DoublyLinkedListTest {
 
     @Test
     void contains() {
+        //given
+        linkedList1.append(5);
+        linkedList1.append(10);
+        linkedList1.append(20);
+
+        //when
+        boolean contains1 = linkedList1.contains(5);
+        boolean contains2 = linkedList1.contains(10);
+        boolean contains3 = linkedList1.contains(20);
+        boolean contains4 = linkedList1.contains(-1);
+        boolean contains5 = emptyList.contains(10);
+
+        //then
+        assertTrue(contains1, "False returned when list contains the element");
+        assertTrue(contains2, "False returned when list contains the element");
+        assertTrue(contains3, "False returned when list contains the element");
+        assertFalse(contains4, "True returned when list doesn't contain the element");
+        assertFalse(contains5, "True returned when list doesn't contain the element");
+        assertThrows(NullPointerException.class, () -> linkedList1.contains(null),
+            "NullPointerException not thrown when null is given to check if it exists");
     }
 
     @Test
     void indexOf() {
+        //given
+        linkedList1.append(0);
+        linkedList1.append(1);
+        linkedList1.append(1);
+        linkedList1.append(0);
+        linkedList1.append(4);
+
+        //when
+        int index1 = linkedList1.indexOf(4);
+        int index2 = linkedList1.indexOf(0);
+        int index3 = linkedList1.indexOf(1);
+        int index4 = linkedList1.indexOf(10);
+        int index5 = emptyList.indexOf(10);
+
+        //then
+        assertEquals(4, index1, "Wrong index returned");
+        assertEquals(0, index2, "Wrong first occurrence index returned");
+        assertEquals(1, index3, "Wrong first occurrence index returned");
+        assertEquals(-1, index4, "Positive index returned when element doesn't exist");
+        assertEquals(-1, index5, "Positive index returned when element doesn't exist");
+        assertThrows(NullPointerException.class, () -> linkedList1.indexOf(null),
+            "NullPointerException not thrown when null is given to find its index");
     }
 
     @Test
