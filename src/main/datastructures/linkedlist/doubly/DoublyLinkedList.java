@@ -250,7 +250,12 @@ public class DoublyLinkedList<E> implements CustomLinkedList<E> {
 
     @Override
     public String toString() {
-        return super.toString();
+        StringBuilder sb = new StringBuilder("[");
+        for (Node<E> cur = head; cur != null; cur = cur.next) {
+            sb.append(cur.toString()).append(cur.next != null ? " -> " : "");
+        }
+        sb.append("]");
+        return sb.toString();
     }
 
     static class Node<E> {

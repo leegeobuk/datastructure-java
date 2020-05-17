@@ -413,4 +413,19 @@ class DoublyLinkedListTest {
         assertThrows(NoSuchElementException.class, () -> emptyList.removeLast(),
             "NoSuchElementException not thrown when removeLast on empty list");
     }
+
+    @Test
+    void testToString() {
+        //given
+        for (int i = 0; i < 10; i++)
+            linkedList1.append(i);
+
+        //when
+        String s1 = linkedList1.toString();
+        String s2 = "[0 -> 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9]";
+
+        //then
+        assertEquals(s1, s2, "Wrong string representation");
+        assertEquals("[]", emptyList.toString(), "Wrong string representation");
+    }
 }
