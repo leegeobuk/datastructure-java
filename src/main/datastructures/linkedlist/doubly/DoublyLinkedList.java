@@ -1,7 +1,6 @@
 package main.datastructures.linkedlist.doubly;
 
 import main.datastructures.linkedlist.CustomLinkedList;
-import main.datastructures.linkedlist.singly.SinglyLinkedList;
 
 import java.util.NoSuchElementException;
 import java.util.Objects;
@@ -72,13 +71,25 @@ public class DoublyLinkedList<E> implements CustomLinkedList<E> {
             append(e);
             return;
         }
-        Node<E> cur = head;
-        for (int i = 0; i < index - 1; i++) {
-            cur = cur.next;
+        Node<E> cur;
+        Node<E> node;
+        if (index < size / 2) {
+            cur = head;
+            for (int i = 0; i < index - 1; i++) {
+                cur = cur.next;
+            }
+            node = new Node<>(e, cur, cur.next);
+            cur.next = node;
+            node.next.prev = node;
+        } else {
+            cur = tail;
+            for (int i = 0; i < (size - 1) - index; i++) {
+                cur = cur.prev;
+            }
+            node = new Node<>(e, cur.prev, cur);
+            cur.prev = node;
+            node.prev.next = node;
         }
-        Node<E> node = new Node<>(e, cur, cur.next);
-        cur.next = node;
-        node.next.prev = node;
         size++;
     }
 
@@ -92,9 +103,17 @@ public class DoublyLinkedList<E> implements CustomLinkedList<E> {
             throw new NullPointerException();
         if (isSetIndexOutOfBounds(index))
             throw new IndexOutOfBoundsException();
-        Node<E> cur = head;
-        for (int i = 0; i < index; i++) {
-            cur = cur.next;
+        Node<E> cur;
+        if (index < size / 2) {
+            cur = head;
+            for (int i = 0; i < index; i++) {
+                cur = cur.next;
+            }
+        } else {
+            cur = tail;
+            for (int i = 0; i < (size - 1) - index; i++) {
+                cur = cur.prev;
+            }
         }
         E old = cur.value;
         cur.value = e;
