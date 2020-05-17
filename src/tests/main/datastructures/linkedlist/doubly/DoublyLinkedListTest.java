@@ -1,5 +1,6 @@
 package main.datastructures.linkedlist.doubly;
 
+import main.datastructures.linkedlist.singly.SinglyLinkedList;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -315,6 +316,28 @@ class DoublyLinkedListTest {
 
     @Test
     void removeAt() {
+        //given
+        SinglyLinkedList<String> linkedList = new SinglyLinkedList<>();
+        for (int i = 0; i < 30; i++)
+            linkedList.append("" + i);
+
+        //when
+        String removed1 = linkedList.removeAt(0);
+        String removed2 = linkedList.removeAt(linkedList.size() - 1);
+        String removed3 = linkedList.removeAt(10);
+        String removed4 = linkedList.removeAt(20);
+        int size = linkedList.size();
+
+        //then
+        assertEquals("0", removed1, "Wrong element removed");
+        assertEquals("29", removed2, "Wrong element removed");
+        assertEquals("11", removed3, "Wrong element removed");
+        assertEquals("22", removed4, "Wrong element removed");
+        assertEquals(26, size, "Wrong size returned when removed by index");
+        assertThrows(IndexOutOfBoundsException.class, () -> linkedList.removeAt(-1),
+            "IndexOutOfBoundsException not thrown when negative index given");
+        assertThrows(IndexOutOfBoundsException.class, () -> linkedList.removeAt(linkedList.size()),
+            "IndexOutOfBoundsException not thrown when index is greater than last index");
     }
 
     @Test

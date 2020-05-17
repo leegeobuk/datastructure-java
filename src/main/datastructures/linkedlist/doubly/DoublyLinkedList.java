@@ -184,11 +184,26 @@ public class DoublyLinkedList<E> implements CustomLinkedList<E> {
 
     @Override
     public E removeAt(int index) {
-        return null;
+        if (isSetIndexOutOfBounds(index))
+            throw new IndexOutOfBoundsException();
+        if (index == 0)
+            return removeFirst();
+        if (index == size - 1)
+            return removeLast();
+        Node<E> cur = head;
+        for (int i = 0; i < index; i++) {
+            cur = cur.next;
+        }
+        E removed = cur.value;
+        cur.prev.next = cur.next;
+        cur.next.prev = cur.prev;
+        size--;
+        return removed;
     }
 
     @Override
     public boolean remove(E e) {
+
         return false;
     }
 
