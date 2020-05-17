@@ -104,7 +104,7 @@ public class SinglyLinkedList<E> implements CustomLinkedList<E> {
 
     @Override
     public int indexOf(E e) {
-        if (Objects.isNull(e))
+        if (e == null)
             throw new NullPointerException();
         int index = 0;
         for (Node<E> cur = head; cur != null; cur = cur.next) {
