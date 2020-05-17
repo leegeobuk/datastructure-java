@@ -197,17 +197,15 @@ public class DoublyLinkedList<E> implements CustomLinkedList<E> {
 
     @Override
     public boolean remove(E e) {
-        if (Objects.isNull(e))
+        if (e == null)
             throw new NullPointerException();
         if (isEmpty())
             throw new NoSuchElementException();
-        for (Node<E> cur = head; cur != null; cur = cur.next) {
-            if (cur.value.equals(e)) {
-                cur.prev.next = cur.next;
-                cur.next.prev = cur.prev;
-                size--;
-                return true;
-            }
+        int index = indexOf(e);
+        if (index != -1) {
+            Node<E> node = findNode(index);
+            unlink(node);
+            return true;
         }
         return false;
     }
