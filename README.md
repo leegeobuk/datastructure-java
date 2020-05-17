@@ -11,5 +11,5 @@ Data structures store and organize data in different ways to offer more efficien
 By learning data structures, we learn how each data structure stores and organizes set of data and applies different operations.
 
 * [Linked List](java-algorithms/src/main/datastructures/linkedlist)
-  * [Singly Linked List](java-algorithms/src/main/datastructures/linkedlist/singly)
-  * [Doubly Linked List](java-algorithms/src/main/datastructures/linkedlist/doubly)
+  * [Singly Linked List](src/main/datastructures/linkedlist/singly)
+  * [Doubly Linked List](src/main/datastructures/linkedlist/doubly)
