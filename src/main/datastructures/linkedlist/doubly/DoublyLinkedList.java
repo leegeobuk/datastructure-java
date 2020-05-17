@@ -124,7 +124,7 @@ public class DoublyLinkedList<E> implements CustomLinkedList<E> {
 
     @Override
     public int indexOf(E e) {
-        if (Objects.isNull(e))
+        if (e == null)
             throw new NullPointerException();
         int index = 0;
         for (Node<E> cur = head; cur != null; cur = cur.next) {
@@ -137,7 +137,7 @@ public class DoublyLinkedList<E> implements CustomLinkedList<E> {
 
     @Override
     public int lastIndexOf(E e) {
-        if (Objects.isNull(e))
+        if (e == null)
             throw new NullPointerException();
         int index = size - 1;
         for (Node<E> cur = tail; cur != null; cur = cur.prev) {
@@ -152,13 +152,7 @@ public class DoublyLinkedList<E> implements CustomLinkedList<E> {
     public E get(int index) {
         if (isSetIndexOutOfBounds(index))
             throw new IndexOutOfBoundsException();
-        if (index == size - 1)
-            return getLast();
-        Node<E> cur = head;
-        for (int i = 0; i < index; i++) {
-            cur = cur.next;
-        }
-        return cur.value;
+        return findNode(index).value;
     }
 
     @Override
