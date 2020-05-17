@@ -144,6 +144,14 @@ public class DoublyLinkedList<E> implements CustomLinkedList<E> {
 
     @Override
     public int lastIndexOf(E e) {
+        if (Objects.isNull(e))
+            throw new NullPointerException();
+        int index = size - 1;
+        for (Node<E> cur = tail; cur != null; cur = cur.prev) {
+            if (cur.value.equals(e))
+                return index;
+            index--;
+        }
         return -1;
     }
 
