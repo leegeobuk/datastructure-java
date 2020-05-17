@@ -136,11 +136,7 @@ public class SinglyLinkedList<E> implements CustomLinkedList<E> {
             throw new IndexOutOfBoundsException();
         if (index == size - 1)
             return getLast();
-        Node<E> cur = head;
-        for (int i = 0; i < index; i++) {
-            cur = cur.next;
-        }
-        return cur.value;
+        return findNode(index).value;
     }
 
     @Override
