@@ -29,30 +29,27 @@ public class SinglyLinkedList<E> implements CustomLinkedList<E> {
     }
 
     @Override
-    public boolean append(E e) {
-        if (Objects.isNull(e))
+    public boolean prepend(E e) {
+        if (e == null)
             throw new NullPointerException();
-        if (isEmpty()) {
-            tail = new Node<>(e, null);
-            head = tail;
-        } else {
-            tail.next = new Node<>(e, null);
-            tail = tail.next;
-        }
+        head = new Node<>(e, head);
+        if (isEmpty())
+            tail = head;
         size++;
         return true;
     }
 
     @Override
-    public boolean prepend(E e) {
-        if (Objects.isNull(e))
+    public boolean append(E e) {
+        return isEmpty() ? prepend(e) : linkAfter(e, tail);
+    }
+
+    private boolean linkAfter(E e, Node<E> pred) {
+        if (e == null)
             throw new NullPointerException();
-        if (isEmpty()) {
-            head = new Node<>(e, null);
-            tail = head;
-        } else {
-            head = new Node<>(e, head);
-        }
+        pred.next = new Node<>(e, pred.next);
+        if (pred == tail)
+            tail = pred.next;
         size++;
         return true;
     }
