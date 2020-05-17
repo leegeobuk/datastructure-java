@@ -161,14 +161,15 @@ public class SinglyLinkedList<E> implements CustomLinkedList<E> {
             return removeFirst();
         if (index == size - 1)
             return removeLast();
-        Node<E> cur = head;
-        for (int i = 0; i < index - 1; i++) {
-            cur = cur.next;
-        }
-        E removed = cur.next.value;
-        cur.next = cur.next.next;
+        Node<E> pred = findNode(index - 1);
+        E removed = pred.next.value;
+        remove(pred);
         size--;
         return removed;
+    }
+
+    private void remove(Node<E> pred) {
+        pred.next = pred.next.next;
     }
 
     @Override
