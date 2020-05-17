@@ -3,7 +3,6 @@ package main.datastructures.linkedlist.singly;
 import main.datastructures.linkedlist.CustomLinkedList;
 
 import java.util.NoSuchElementException;
-import java.util.Objects;
 
 public class SinglyLinkedList<E> implements CustomLinkedList<E> {
 
