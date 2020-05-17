@@ -1,7 +1,6 @@
 package main.datastructures.linkedlist.singly;
 
 import main.datastructures.linkedlist.CustomLinkedList;
-import org.junit.platform.engine.support.hierarchical.Node;
 
 import java.util.NoSuchElementException;
 import java.util.Objects;
@@ -159,16 +158,17 @@ public class SinglyLinkedList<E> implements CustomLinkedList<E> {
             throw new IndexOutOfBoundsException();
         if (index == 0)
             return removeFirst();
-        if (index == size - 1)
-            return removeLast();
         Node<E> pred = findNode(index - 1);
         E removed = pred.next.value;
-        remove(pred);
+        unlinkAfter(pred);
         return removed;
     }
 
-    private void remove(Node<E> pred) {
-        pred.next = pred.next.next;
+    private void unlinkAfter(Node<E> pred) {
+        Node<E> succ = pred.next;
+        pred.next = succ.next;
+        if (succ == tail)
+            tail = pred;
         size--;
     }
 
@@ -185,7 +185,7 @@ public class SinglyLinkedList<E> implements CustomLinkedList<E> {
         int index = indexOf(e);
         if (index != -1) {
             Node<E> pred = findNode(index - 1);
-            remove(pred);
+            unlinkAfter(pred);
             return true;
         }
         return false;
@@ -196,11 +196,9 @@ public class SinglyLinkedList<E> implements CustomLinkedList<E> {
         if (isEmpty())
             throw new NoSuchElementException();
         E removed = head.value;
-        if (size == 1) {
-            clear();
-            return removed;
-        }
         head = head.next;
+        if (size == 1)
+            tail = null;
         size--;
         return removed;
     }
@@ -212,13 +210,9 @@ public class SinglyLinkedList<E> implements CustomLinkedList<E> {
         if (size == 1) {
             return removeFirst();
         }
-        Node<E> cur = head;
-        for (int i = 0; i < size - 2; i++) {
-            cur = cur.next;
-        }
         E removed = tail.value;
-        tail = cur;
-        size--;
+        Node<E> pred = findNode(size - 2);
+        unlinkAfter(pred);
         return removed;
     }
 
