@@ -95,6 +95,27 @@ class DoublyLinkedListTest {
 
     @Test
     void prepend() {
+        //given
+
+        //when
+        boolean isPrepended1 = linkedList1.prepend(31);
+        Integer first1 = linkedList1.getFirst();
+        boolean isPrepended2 = linkedList1.prepend(50);
+        Integer first2 = linkedList1.getFirst();
+        boolean isPrepended3 = linkedList1.prepend(87);
+        Integer first3 = linkedList1.getFirst();
+        int size = linkedList1.size();
+
+        //then
+        assertTrue(isPrepended1, "False returned for proper prepend");
+        assertTrue(isPrepended2, "False returned for proper prepend");
+        assertTrue(isPrepended3, "False returned for proper prepend");
+        assertEquals(31, first1, "Wrong first element return after prepend");
+        assertEquals(50, first2, "Wrong first element return after prepend");
+        assertEquals(87, first3, "Wrong first element return after prepend");
+        assertEquals(3, size, "Wrong size returned after prepend");
+        assertThrows(NullPointerException.class, () -> linkedList1.prepend(null),
+            "NullPointerException not thrown when null is given to prepend");
     }
 
     @Test

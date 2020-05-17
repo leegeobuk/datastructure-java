@@ -1,6 +1,7 @@
 package main.datastructures.linkedlist.doubly;
 
 import main.datastructures.linkedlist.CustomLinkedList;
+import main.datastructures.linkedlist.singly.SinglyLinkedList;
 
 import java.util.NoSuchElementException;
 import java.util.Objects;
@@ -45,6 +46,16 @@ public class DoublyLinkedList<E> implements CustomLinkedList<E> {
 
     @Override
     public boolean prepend(E e) {
+        if (Objects.isNull(e))
+            throw new NullPointerException();
+        if (isEmpty()) {
+            head = new Node<>(e, null, null);
+            tail = head;
+        } else {
+            head.prev = new Node<>(e, null, head);
+            head = head.prev;
+        }
+        size++;
         return true;
     }
 
@@ -80,7 +91,9 @@ public class DoublyLinkedList<E> implements CustomLinkedList<E> {
 
     @Override
     public E getFirst() {
-        return null;
+        if (isEmpty())
+            throw new NoSuchElementException();
+        return head.value;
     }
 
     @Override
