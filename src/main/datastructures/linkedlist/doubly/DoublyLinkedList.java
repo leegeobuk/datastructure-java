@@ -6,10 +6,17 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 
 public class DoublyLinkedList<E> implements CustomLinkedList<E> {
-
     private Node<E> head;
+
     private Node<E> tail;
     private int size;
+
+    @Override
+    public void clear() {
+        head = null;
+        tail = null;
+        size = 0;
+    }
 
     @Override
     public boolean isEmpty() {
@@ -22,10 +29,8 @@ public class DoublyLinkedList<E> implements CustomLinkedList<E> {
     }
 
     @Override
-    public void clear() {
-        head = null;
-        tail = null;
-        size = 0;
+    public boolean contains(E e) {
+        return indexOf(e) >= 0;
     }
 
     @Override
@@ -115,11 +120,6 @@ public class DoublyLinkedList<E> implements CustomLinkedList<E> {
 
     private boolean isSetIndexOutOfBounds(int index) {
         return index < 0 || index >= size;
-    }
-
-    @Override
-    public boolean contains(E e) {
-        return indexOf(e) >= 0;
     }
 
     @Override

@@ -1,12 +1,8 @@
 package main.datastructures.stack;
 
-public interface CustomStack<E> {
-    int size();
+import main.datastructures.CustomCollection;
 
-    boolean empty();
-
-    void clear();
-
+public interface CustomStack<E> extends CustomCollection<E> {
     E peek();
 
     E push(E e);

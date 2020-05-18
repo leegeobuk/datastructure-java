@@ -51,9 +51,9 @@ class StackTest {
         stack1.pop();
 
         //when
-        boolean empty1 = stack1.empty();
-        boolean empty2 = stack2.empty();
-        boolean empty3 = emptyStack.empty();
+        boolean empty1 = stack1.isEmpty();
+        boolean empty2 = stack2.isEmpty();
+        boolean empty3 = emptyStack.isEmpty();
 
         //then
         assertTrue(empty1, "False returned after popping all elements");
@@ -73,9 +73,9 @@ class StackTest {
         emptyStack.clear();
 
         //then
-        assertTrue(stack1.empty(), "Not empty after clear");
-        assertTrue(stack2.empty(), "Not empty after clear");
-        assertTrue(emptyStack.empty(), "Not empty after clear");
+        assertTrue(stack1.isEmpty(), "Not empty after clear");
+        assertTrue(stack2.isEmpty(), "Not empty after clear");
+        assertTrue(emptyStack.isEmpty(), "Not empty after clear");
     }
 
     @Test

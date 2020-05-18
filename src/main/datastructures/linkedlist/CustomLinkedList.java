@@ -1,11 +1,8 @@
 package main.datastructures.linkedlist;
 
-public interface CustomLinkedList<E> {
-    boolean isEmpty();
+import main.datastructures.CustomCollection;
 
-    int size();
-
-    void clear();
+public interface CustomLinkedList<E> extends CustomCollection<E> {
 
     boolean append(E e);
 
@@ -14,8 +11,6 @@ public interface CustomLinkedList<E> {
     void insert(int index, E e);
 
     E set(int index, E e);
-
-    boolean contains(E e);
 
     int indexOf(E e);
 

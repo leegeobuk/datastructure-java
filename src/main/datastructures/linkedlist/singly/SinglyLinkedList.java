@@ -11,6 +11,13 @@ public class SinglyLinkedList<E> implements CustomLinkedList<E> {
     private int size;
 
     @Override
+    public void clear() {
+        head = null;
+        tail = null;
+        size = 0;
+    }
+
+    @Override
     public boolean isEmpty() {
         return size == 0;
     }
@@ -21,10 +28,8 @@ public class SinglyLinkedList<E> implements CustomLinkedList<E> {
     }
 
     @Override
-    public void clear() {
-        head = null;
-        tail = null;
-        size = 0;
+    public boolean contains(E e) {
+        return indexOf(e) >= 0;
     }
 
     @Override
@@ -94,11 +99,6 @@ public class SinglyLinkedList<E> implements CustomLinkedList<E> {
 
     private boolean isSetIndexOutOfBounds(int index) {
         return index < 0 || index >= size;
-    }
-
-    @Override
-    public boolean contains(E e) {
-        return indexOf(e) >= 0;
     }
 
     @Override
