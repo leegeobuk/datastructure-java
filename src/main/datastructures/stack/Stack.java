@@ -4,7 +4,7 @@ import main.datastructures.linkedlist.doubly.DoublyLinkedList;
 
 public class Stack<E> implements CustomStack<E> {
 
-    private DoublyLinkedList<E> linkedList;
+    private DoublyLinkedList<E> linkedList = new DoublyLinkedList<>();
 
     @Override
     public int size() {
