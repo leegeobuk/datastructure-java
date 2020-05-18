@@ -157,5 +157,29 @@ class StackTest {
 
     @Test
     void search() {
+        //given
+        stack1.push(5);
+        stack1.push(6);
+        stack1.push(9);
+        stack1.push(1);
+        stack1.push(2);
+        stack1.push(5);
+
+        //when
+        int index1 = stack1.search(5);
+        int index2 = stack1.search(6);
+        int index3 = stack1.search(9);
+        stack1.pop();
+        int index4 = stack1.search(5);
+        int index5 = stack1.search(6);
+        int index6 = stack1.search(9);
+
+        //then
+        assertEquals(1, index1, "Wrong index searched");
+        assertEquals(5, index2, "Wrong index searched");
+        assertEquals(4, index3, "Wrong index searched");
+        assertEquals(5, index4, "Wrong index searched");
+        assertEquals(4, index5, "Wrong index searched");
+        assertEquals(3, index6, "Wrong index searched");
     }
 }
