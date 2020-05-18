@@ -116,6 +116,7 @@ class StackTest {
         Integer last3 = stack1.peek();
         Integer pushed4 = stack1.push(12);
         Integer last4 = stack1.peek();
+        int size = stack1.size();
 
         //then
         assertEquals(3, pushed1, "Wrong element pushed");
@@ -126,12 +127,21 @@ class StackTest {
         assertEquals(6, last2, "Wrong element on top after push");
         assertEquals(9, last3, "Wrong element on top after push");
         assertEquals(12, last4, "Wrong element on top after push");
+        assertEquals(4, size, "Wrong size returned after push");
         assertThrows(NullPointerException.class, () -> stack1.push(null),
             "NullPointerException not thrown when null pushed");
     }
 
     @Test
     void pop() {
+        //given
+
+
+        //when
+
+
+        //then
+
     }
 
     @Test
