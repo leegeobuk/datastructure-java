@@ -61,6 +61,19 @@ class StackTest {
 
     @Test
     void clear() {
+        //given
+        for (int i = 0; i < 10; i++)
+            stack1.push(i);
+
+        //when
+        stack1.clear();
+        stack2.clear();
+        emptyStack.clear();
+
+        //then
+        assertTrue(stack1.empty(), "Not empty after clear");
+        assertTrue(stack2.empty(), "Not empty after clear");
+        assertTrue(emptyStack.empty(), "Not empty after clear");
     }
 
     @Test
