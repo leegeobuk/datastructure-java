@@ -136,12 +136,23 @@ class StackTest {
     void pop() {
         //given
 
-
         //when
-
+        Integer popped1 = stack2.pop();
+        Integer popped2 = stack2.pop();
+        Integer popped3 = stack2.pop();
+        Integer popped4 = stack2.pop();
+        Integer popped5 = stack2.pop();
+        int size = stack2.size();
 
         //then
-
+        assertEquals(29, popped1, "Wrong element popped");
+        assertEquals(28, popped2, "Wrong element popped");
+        assertEquals(27, popped3, "Wrong element popped");
+        assertEquals(26, popped4, "Wrong element popped");
+        assertEquals(25, popped5, "Wrong element popped");
+        assertEquals(25, size, "Wrong size returned after pop");
+        assertThrows(NoSuchElementException.class, () -> emptyStack.pop(),
+            "NoSuchElementException not thrown when pop on empty stack");
     }
 
     @Test
