@@ -1,9 +1,9 @@
 package main.datastructures.stack;
 
 public interface CustomStack<E> {
-    boolean empty();
-
     int size();
+
+    boolean empty();
 
     void clear();
 

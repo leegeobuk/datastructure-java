@@ -7,8 +7,18 @@ public class Stack<E> implements CustomStack<E> {
     private DoublyLinkedList<E> linkedList;
 
     @Override
+    public int size() {
+        return linkedList.size();
+    }
+
+    @Override
     public boolean empty() {
         return linkedList.isEmpty();
+    }
+
+    @Override
+    public void clear() {
+        linkedList.clear();
     }
 
     @Override
