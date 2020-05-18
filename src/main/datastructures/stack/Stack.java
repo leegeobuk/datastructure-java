@@ -17,15 +17,14 @@ public class Stack<E> implements CustomStack<E> {
     }
 
     @Override
-    public E pop() {
-        return linkedList.removeLast();
+    public E push(E e) {
+        linkedList.append(e);
+        return e;
     }
 
     @Override
-    public E push(E e) {
-        linkedList.append(e);
-        java.util.Stack<E> stack = new java.util.Stack<>();
-        return e;
+    public E pop() {
+        return linkedList.removeLast();
     }
 
     /**
