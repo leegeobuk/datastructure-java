@@ -52,7 +52,7 @@ public class Stack<E> implements CustomStack<E> {
      */
     @Override
     public int search(E e) {
-        int index = linkedList.indexOf(e);
+        int index = linkedList.lastIndexOf(e);
         return index >= 0 ? (linkedList.size() - index) : -1;
     }
 }
