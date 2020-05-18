@@ -4,6 +4,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.NoSuchElementException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class StackTest {
@@ -78,6 +80,27 @@ class StackTest {
 
     @Test
     void peek() {
+        //given
+
+        //when
+        Integer last1 = stack2.peek();
+        stack2.pop();
+        Integer last2 = stack2.peek();
+        stack2.pop();
+        Integer last3 = stack2.peek();
+        stack2.pop();
+        Integer last4 = stack2.peek();
+        stack2.pop();
+        Integer last5 = stack2.peek();
+
+        //then
+        assertEquals(29, last1, "Wrong element at the top of stack");
+        assertEquals(28, last2, "Wrong element at the top of stack");
+        assertEquals(27, last3, "Wrong element at the top of stack");
+        assertEquals(26, last4, "Wrong element at the top of stack");
+        assertEquals(25, last5, "Wrong element at the top of stack");
+        assertThrows(NoSuchElementException.class, () -> emptyStack.peek(),
+            "NoSuchElementException not thrown for peek on empty stack");
     }
 
     @Test
