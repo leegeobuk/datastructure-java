@@ -75,6 +75,26 @@ class QueueTest {
 
     @Test
     void contains() {
+        //given
+        queue1.enqueue(5);
+        queue1.enqueue(10);
+        queue1.enqueue(20);
+
+        //when
+        boolean contains1 = queue1.contains(5);
+        boolean contains2 = queue1.contains(10);
+        boolean contains3 = queue1.contains(20);
+        boolean contains4 = queue1.contains(-1);
+        boolean contains5 = emptyQueue.contains(10);
+
+        //then
+        assertTrue(contains1, "False returned when queue contains the element");
+        assertTrue(contains2, "False returned when queue contains the element");
+        assertTrue(contains3, "False returned when queue contains the element");
+        assertFalse(contains4, "True returned when queue doesn't contain the element");
+        assertFalse(contains5, "True returned when queue doesn't contain the element");
+        assertThrows(NullPointerException.class, () -> queue1.contains(null),
+            "NullPointerException not thrown when null is given for contains");
     }
 
     @Test
