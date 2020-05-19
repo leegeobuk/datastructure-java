@@ -14,3 +14,4 @@ By learning data structures, we learn how each data structure stores and organiz
   * [Singly Linked List](src/main/datastructures/linkedlist/singly)
   * [Doubly Linked List](src/main/datastructures/linkedlist/doubly)
 * [Stack](src/main/datastructures/stack)
+* [Queue](src/main/datastructures/queue)
