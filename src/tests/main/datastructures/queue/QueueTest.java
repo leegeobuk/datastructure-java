@@ -57,6 +57,20 @@ class QueueTest {
 
     @Test
     void size() {
+        //given
+        queue1.enqueue(10);
+        queue1.enqueue(11);
+
+        //when
+        queue1.dequeue();
+        int size1 = queue1.size();
+        int size2 = queue2.size();
+        int size3 = emptyQueue.size();
+
+        //then
+        assertEquals(1, size1, "Wrong size returned after dequeue");
+        assertEquals(30, size2, "Wrong size returned after enqueue");
+        assertEquals(0, size3, "Wrong size returned for empty queue");
     }
 
     @Test
