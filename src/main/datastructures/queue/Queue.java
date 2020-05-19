@@ -4,40 +4,40 @@ import main.datastructures.linkedlist.doubly.DoublyLinkedList;
 
 public class Queue<E> implements CustomQueue<E> {
 
-    private DoublyLinkedList linkedList = new DoublyLinkedList();
+    private DoublyLinkedList<E> linkedList = new DoublyLinkedList();
 
     @Override
     public void clear() {
-
+        linkedList.clear();
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return linkedList.isEmpty();
     }
 
     @Override
     public int size() {
-        return 0;
+        return linkedList.size();
     }
 
     @Override
     public boolean contains(E e) {
-        return false;
+        return linkedList.contains(e);
     }
 
     @Override
     public boolean enqueue(E e) {
-        return false;
+        return linkedList.append(e);
     }
 
     @Override
     public E dequeue() {
-        return null;
+        return linkedList.removeFirst();
     }
 
     @Override
     public E peek() {
-        return null;
+        return linkedList.getFirst();
     }
 }
