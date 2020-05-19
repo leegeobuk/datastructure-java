@@ -4,6 +4,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.NoSuchElementException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class QueueTest {
@@ -124,6 +126,25 @@ class QueueTest {
 
     @Test
     void dequeue() {
+        //given
+
+        //when
+        Integer first1 = queue2.dequeue();
+        Integer first2 = queue2.dequeue();
+        Integer first3 = queue2.dequeue();
+        Integer first4 = queue2.dequeue();
+        Integer first5 = queue2.dequeue();
+        int size = queue2.size();
+
+        //then
+        assertEquals(0, first1, "Wrong element returned after dequeue");
+        assertEquals(1, first2, "Wrong element returned after dequeue");
+        assertEquals(2, first3, "Wrong element returned after dequeue");
+        assertEquals(3, first4, "Wrong element returned after dequeue");
+        assertEquals(4, first5, "Wrong element returned after dequeue");
+        assertEquals(25, size, "Wrong size returned after dequeue");
+        assertThrows(NoSuchElementException.class, () -> emptyQueue.dequeue(),
+            "NoSuchElementException not thrown when dequeue on empty list");
     }
 
     @Test
