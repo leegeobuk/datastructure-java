@@ -99,6 +99,27 @@ class QueueTest {
 
     @Test
     void enqueue() {
+        //given
+
+        //when
+        boolean isEnqueued1 = queue1.enqueue(31);
+        boolean isEnqueued2 = queue1.enqueue(50);
+        boolean isEnqueued3 = queue1.enqueue(87);
+        int size = queue1.size();
+        Integer first1 = queue1.dequeue();
+        Integer first2 = queue1.dequeue();
+        Integer first3 = queue1.dequeue();
+
+        //then
+        assertTrue(isEnqueued1, "False returned for valid enqueue");
+        assertTrue(isEnqueued2, "False returned for valid enqueue");
+        assertTrue(isEnqueued3, "False returned for valid enqueue");
+        assertEquals(31, first1, "Wrong elements order after enqueue");
+        assertEquals(50, first2, "Wrong elements order after enqueue");
+        assertEquals(87, first3, "Wrong elements order after enqueue");
+        assertEquals(3, size, "Wrong size after enqueue");
+        assertThrows(NullPointerException.class, () -> queue1.enqueue(null),
+            "NullPointerException not thrown when null is given to enqueue");
     }
 
     @Test
