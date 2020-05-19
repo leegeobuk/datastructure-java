@@ -149,5 +149,19 @@ class QueueTest {
 
     @Test
     void peek() {
+        //given
+        for (int i = 0; i < 10; i++)
+            queue1.enqueue(i);
+
+        //when
+        Integer first = queue1.peek();
+        queue1.dequeue();
+        Integer second = queue1.peek();
+
+        //then
+        assertEquals(0, first, "Wrong first element returned");
+        assertEquals(1, second, "Wrong first element returned");
+        assertThrows(NoSuchElementException.class, () -> emptyQueue.peek(),
+            "NoSuchElementException not thrown when peek for empty queue");
     }
 }
