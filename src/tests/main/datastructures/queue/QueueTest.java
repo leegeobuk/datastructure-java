@@ -43,6 +43,16 @@ class QueueTest {
 
     @Test
     void isEmpty() {
+        //given
+        queue1.enqueue(10);
+
+        //when
+        queue1.dequeue();
+
+        //then
+        assertTrue(queue1.isEmpty(), "Not empty after dequeueing all elements");
+        assertFalse(queue2.isEmpty(), "Non-empty queue is empty");
+        assertTrue(emptyQueue.isEmpty(), "False returned for empty queue");
     }
 
     @Test
