@@ -1,5 +1,5 @@
 # java-algorithms
-This repository will contain examples of algorithms and data structures implemented in Java.
+This repository will contain examples of data structures implemented in Java.
 
 Each algorithm and data structure has its own README.md with explanations and references.
 
